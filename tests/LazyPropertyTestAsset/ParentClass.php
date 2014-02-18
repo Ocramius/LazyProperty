@@ -38,4 +38,52 @@ class ParentClass
     {
         return $this->$propertyName;
     }
+
+    /**
+     * @return mixed
+     */
+    private function getPrivate1()
+    {
+        return $this->private1 = 'private1';
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getPrivate2()
+    {
+        return $this->private2 = 'private';
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getProtected1()
+    {
+        return $this->protected1 = 'protected1';
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getProtected2()
+    {
+        return $this->protected2 = 'protected2';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublic1()
+    {
+        return $this->public1 = 'public1';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublic2()
+    {
+        return $this->public2 = 'public2';
+    }
 }

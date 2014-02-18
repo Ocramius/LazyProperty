@@ -88,6 +88,23 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertNull($instance->getProperty('private2'));
     }
 
+    public function testMixedInheritedLazyPropertiesAreLazilyInitialized()
+    {
+        $instance = new InheritedPropertiesClass();
+
+        $this->assertNull($this->getProperty($instance, 'public1'));
+        $this->assertNull($this->getProperty($instance, 'public2'));
+        $this->assertNull($this->getProperty($instance, 'protected1'));
+        $this->assertNull($this->getProperty($instance, 'protected2'));
+
+        $instance->initProperties(['public1', 'protected1']);
+
+        $this->assertSame('public1', $this->getProperty($instance, 'public1'));
+        $this->assertNull($this->getProperty($instance, 'public2'));
+        $this->assertSame('protected1', $this->getProperty($instance, 'protected1'));
+        $this->assertNull($this->getProperty($instance, 'protected2'));
+    }
+
     private function getProperty($instance, $propertyName)
     {
         $reflectionClass = new \ReflectionClass($instance);
