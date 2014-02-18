@@ -18,6 +18,8 @@
 
 namespace LazyPropertyTest;
 
+use LazyPropertyTestAsset\AClass;
+use LazyPropertyTestAsset\BClass;
 use LazyPropertyTestAsset\InheritedPropertiesClass;
 use LazyPropertyTestAsset\LazyGetterClass;
 use LazyPropertyTestAsset\MixedPropertiesClass;
@@ -161,6 +163,18 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $instance->initProperties(['private1']);
         $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
         $instance->private1;
+    }
+
+    public function testGetMultiInheritanceProperties()
+    {
+        $instanceA = new AClass();
+        $instanceB = new BClass();
+
+        $instanceA->initALazyProperties('private');
+        $instanceB->initALazyProperties('private');
+
+        $this->assertSame('LazyPropertyTestAsset\AClass', $this->getProperty($instanceA, 'private'));
+        $this->assertSame('LazyPropertyTestAsset\BClass', $this->getProperty($instanceB, 'private'));
     }
 
     private function getProperty($instance, $propertyName)
