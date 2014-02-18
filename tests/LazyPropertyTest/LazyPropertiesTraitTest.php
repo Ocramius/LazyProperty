@@ -37,11 +37,6 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
      */
     protected $instance;
 
-    /**
-     * @var \Closure[]
-     */
-    private $inspectors;
-
     public function setUp()
     {
         $this->instance = new MixedPropertiesClass();

@@ -18,12 +18,7 @@
 
 namespace LazyPropertyTest\Exception;
 
-use LazyProperty\Exception\InvalidAccessException;
-use LazyProperty\Exception\InvalidLazyProperty;
 use LazyProperty\Exception\MissingLazyPropertyGetterException;
-use LazyProperty\Util\AccessScopeChecker;
-use LazyPropertyTestAsset\InheritedPropertiesClass;
-use LazyPropertyTestAsset\ParentClass;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 
@@ -39,8 +34,8 @@ class MissingLazyPropertyGetterExceptionTest extends PHPUnit_Framework_TestCase
     public function testInvalidContext()
     {
         $this->assertStringMatchesFormat(
-            'The getter "getfoo" for lazy property "foo" is not defined in "stdClass#%s"',
-            MissingLazyPropertyGetterException::fromGetter(new stdClass(), 'getfoo', 'foo')->getMessage()
+            'The getter "getFoo" for lazy property "foo" is not defined in "stdClass#%s"',
+            MissingLazyPropertyGetterException::fromGetter(new stdClass(), 'getFoo', 'foo')->getMessage()
         );
     }
 }

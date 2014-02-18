@@ -32,11 +32,9 @@ use PHPUnit_Framework_TestCase;
  */
 class AccessScopeCheckerTest extends PHPUnit_Framework_TestCase
 {
-    private $foo;
-
     public function testAllowsAccessFromSameInstance()
     {
-        $this->assertNull(AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'foo'));
+        $this->assertNull(AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'backupGlobals'));
     }
 
     public function testAllowsAccessFromSubClass()

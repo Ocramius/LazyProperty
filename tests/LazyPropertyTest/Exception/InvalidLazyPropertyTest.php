@@ -18,11 +18,7 @@
 
 namespace LazyPropertyTest\Exception;
 
-use LazyProperty\Exception\InvalidAccessException;
 use LazyProperty\Exception\InvalidLazyProperty;
-use LazyProperty\Util\AccessScopeChecker;
-use LazyPropertyTestAsset\InheritedPropertiesClass;
-use LazyPropertyTestAsset\ParentClass;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 
