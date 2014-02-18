@@ -84,7 +84,7 @@ trait LazyPropertiesTrait
      *
      * @param string $name
      */
-    protected function & __get($name)
+    public function & __get($name)
     {
         if (isset($this->lazyPropertyAccessors[$name])) {
             if ($this->lazyPropertyAccessors[$name]) {
