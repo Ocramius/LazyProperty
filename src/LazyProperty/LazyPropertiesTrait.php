@@ -17,8 +17,11 @@
  */
 
 namespace LazyProperty;
+
+
 use LazyProperty\Exception\InvalidLazyProperty;
 use LazyProperty\Exception\MissingLazyPropertyGetterException;
+use LazyProperty\Util\AccessScopeChecker;
 
 /**
  * Trait providing lazy initialization of object properties
@@ -66,6 +69,13 @@ trait LazyPropertiesTrait
     {
         if (! isset($this->lazyPropertyAccessors[$name])) {
             throw InvalidLazyProperty::nonExistingLazyProperty($this, $name);
+        }
+
+        $caller = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT)[1];
+
+        // small optimization to avoid initializing reflection out of context
+        if (! isset($caller['object']) || $caller['object'] !== $this) {
+            AccessScopeChecker::checkCallerScope($caller, $this, $name);
         }
 
         $this->$name = null;

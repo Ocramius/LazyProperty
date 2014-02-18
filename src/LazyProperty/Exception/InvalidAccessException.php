@@ -18,30 +18,32 @@
 
 namespace LazyProperty\Exception;
 
-use LogicException;
+use InvalidArgumentException;
 
 /**
- * Exception for missing lazy properties
+ * Exception for invalid context access for lazy properties
  *
  * @author Marco Pivetta <ocramius@gmail.com>
  */
-class InvalidLazyProperty extends LogicException implements ExceptionInterface
+class InvalidAccessException extends InvalidArgumentException implements ExceptionInterface
 {
     /**
      * Named constructor.
      *
+     * @param mixed  $caller
      * @param object $instance
      * @param string $property
      *
      * @return self
      */
-    public static function nonExistingLazyProperty($instance, $property)
+    public static function invalidContext($caller, $instance, $property)
     {
         return new self(sprintf(
-            'The requested lazy property "%s" is not defined in "%s#%s"',
+            'The requested lazy property "%s" of "%s#%s" is not accessible from the context of in "%s"',
             $property,
             get_class($instance),
-            spl_object_hash($instance)
+            spl_object_hash($instance),
+            is_object($caller) ? get_class($caller) : gettype($caller)
         ));
     }
 } 
