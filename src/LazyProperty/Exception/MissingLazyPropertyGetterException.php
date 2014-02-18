@@ -46,4 +46,4 @@ class MissingLazyPropertyGetterException extends InvalidArgumentException implem
             spl_object_hash($instance)
         ));
     }
-} 
+}

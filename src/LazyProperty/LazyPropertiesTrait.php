@@ -18,7 +18,6 @@
 
 namespace LazyProperty;
 
-
 use LazyProperty\Exception\InvalidLazyProperty;
 use LazyProperty\Exception\MissingLazyPropertyGetterException;
 use LazyProperty\Util\AccessScopeChecker;

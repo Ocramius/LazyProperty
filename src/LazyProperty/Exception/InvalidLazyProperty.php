@@ -44,4 +44,4 @@ class InvalidLazyProperty extends LogicException implements ExceptionInterface
             spl_object_hash($instance)
         ));
     }
-} 
+}

@@ -188,6 +188,9 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame('defined', $instance->public1);
     }
 
+    /**
+     * @param string $propertyName
+     */
     private function getProperty($instance, $propertyName)
     {
         $reflectionClass = new \ReflectionClass($instance);

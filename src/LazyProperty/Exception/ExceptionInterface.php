@@ -25,4 +25,4 @@ namespace LazyProperty\Exception;
  */
 interface ExceptionInterface
 {
-} 
+}

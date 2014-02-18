@@ -46,4 +46,4 @@ class InvalidAccessException extends InvalidArgumentException implements Excepti
             is_object($caller) ? get_class($caller) : gettype($caller)
         ));
     }
-} 
+}

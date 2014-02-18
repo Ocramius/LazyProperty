@@ -18,8 +18,6 @@
 
 namespace LazyPropertyTestAsset;
 
-use LazyProperty\LazyPropertiesTrait;
-
 /**
  * Base class with mixed properties
  *
@@ -40,7 +38,7 @@ class ParentClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     private function getPrivate1()
     {
@@ -48,7 +46,7 @@ class ParentClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     private function getPrivate2()
     {
@@ -56,7 +54,7 @@ class ParentClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     protected function getProtected1()
     {
@@ -64,7 +62,7 @@ class ParentClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     protected function getProtected2()
     {
@@ -72,7 +70,7 @@ class ParentClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPublic1()
     {
@@ -80,7 +78,7 @@ class ParentClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPublic2()
     {

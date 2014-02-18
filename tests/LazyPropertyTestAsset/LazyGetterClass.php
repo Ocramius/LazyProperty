@@ -37,7 +37,7 @@ class LazyGetterClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getProperty()
     {

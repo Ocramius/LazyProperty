@@ -36,6 +36,9 @@ class MixedPropertiesClass
     private $private1;
     private $private2;
 
+    /**
+     * @param string $propertyName
+     */
     public function getProperty($propertyName)
     {
         return $this->$propertyName;
@@ -47,7 +50,7 @@ class MixedPropertiesClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     private function getPrivate1()
     {
@@ -55,7 +58,7 @@ class MixedPropertiesClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     private function getPrivate2()
     {
@@ -63,7 +66,7 @@ class MixedPropertiesClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     protected function getProtected1()
     {
@@ -71,7 +74,7 @@ class MixedPropertiesClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     protected function getProtected2()
     {
@@ -79,7 +82,7 @@ class MixedPropertiesClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPublic1()
     {
@@ -87,7 +90,7 @@ class MixedPropertiesClass
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPublic2()
     {

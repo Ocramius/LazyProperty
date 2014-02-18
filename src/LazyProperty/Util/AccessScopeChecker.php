@@ -18,7 +18,6 @@
 
 namespace LazyProperty\Util;
 
-
 use LazyProperty\Exception\InvalidAccessException;
 
 /**
@@ -34,7 +33,7 @@ class AccessScopeChecker
      * @internal
      * @private
      *
-     * @param array  $caller the caller array as from the debug stack trace entry
+     * @param array  $caller   the caller array as from the debug stack trace entry
      * @param object $instance
      * @param string $property
      *
