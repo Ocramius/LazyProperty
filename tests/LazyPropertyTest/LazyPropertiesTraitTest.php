@@ -150,6 +150,24 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         (new LazyGetterClass())->nonExisting;
     }
 
+    public function testDeniesAccessToProtectedLazyProperties()
+    {
+        $instance = new MixedPropertiesClass();
+
+        $instance->initProperties(['protected1']);
+        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
+        $instance->protected1;
+    }
+
+    public function testDeniesAccessToPrivateLazyProperties()
+    {
+        $instance = new MixedPropertiesClass();
+
+        $instance->initProperties(['private1']);
+        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
+        $instance->private1;
+    }
+
     private function getProperty($instance, $propertyName)
     {
         $reflectionClass = new \ReflectionClass($instance);
