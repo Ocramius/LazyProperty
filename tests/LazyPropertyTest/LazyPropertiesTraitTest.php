@@ -171,7 +171,7 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $instanceB = new BClass();
 
         $instanceA->initALazyProperties('private');
-        $instanceB->initALazyProperties('private');
+        $instanceB->initBLazyProperties('private');
 
         $this->assertSame('LazyPropertyTestAsset\AClass', $this->getProperty($instanceA, 'private'));
         $this->assertSame('LazyPropertyTestAsset\BClass', $this->getProperty($instanceB, 'private'));
