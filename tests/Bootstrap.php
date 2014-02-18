@@ -33,8 +33,7 @@ if (! isset($loader)) {
 }
 
 /* @var $loader \Composer\Autoload\ClassLoader */
-$loader->add('LazyMapTest\\', __DIR__);
-$loader->add('LazyMapTestAsset\\', __DIR__);
-$loader->add('LazyMapPerformance\\', __DIR__);
+$loader->add('LazyPropertyTest\\', __DIR__);
+$loader->add('LazyPropertyTestAsset\\', __DIR__);
 
 unset($files, $file, $loader);

@@ -1,9 +1,9 @@
 {
-    "name":              "ocramius/lazy-map",
-    "description":       "A library that provides lazy instantiation logic for a map of objects",
+    "name":              "ocramius/lazy-property",
+    "description":       "A library that provides lazy instantiation logic for a object properties",
     "type":              "library",
     "license":           "MIT",
-    "homepage":          "https://github.com/Ocramius/LazyMap",
+    "homepage":          "https://github.com/Ocramius/LazyProperty",
     "minimum-stability": "dev",
     "keywords":          [
         "lazy",
@@ -31,7 +31,7 @@
     },
     "autoload": {
         "psr-0": {
-            "LazyMap\\": "src"
+            "LazyProperty\\": "src"
         }
     },
     "extra": {

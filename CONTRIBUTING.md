@@ -11,13 +11,13 @@
 To install the project and run the tests, you need to clone it first:
 
 ```sh
-$ git clone git://github.com/Ocramius/LazyMap.git
+$ git clone git://github.com/Ocramius/LazyProperty.git
 ```
 
 You will then need to run a composer installation:
 
 ```sh
-$ cd LazyMap
+$ cd LazyProperty
 $ curl -s https://getcomposer.org/installer | php
 $ php composer.phar update
 ```

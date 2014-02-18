@@ -11,8 +11,8 @@
     backupGlobals="false"
     syntaxCheck="true"
 >
-    <testsuite name="LazyMap tests">
-        <directory>./tests/LazyMapTest</directory>
+    <testsuite name="LazyProperty tests">
+        <directory>./tests/LazyPropertyTest</directory>
     </testsuite>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">

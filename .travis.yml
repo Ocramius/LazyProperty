@@ -16,7 +16,6 @@ before_script:
 
 script:
   - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
-  - time php -n ./vendor/bin/athletic -p ./tests/LazyMapPerformance/ -b ./tests/Bootstrap.php -f GroupedFormatter
   - ./vendor/bin/phpcs --standard=PSR2 ./src/ ./tests/
 
 after_script:
