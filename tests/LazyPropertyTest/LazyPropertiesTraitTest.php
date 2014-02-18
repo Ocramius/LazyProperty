@@ -19,6 +19,7 @@
 namespace LazyPropertyTest;
 
 use LazyPropertyTestAsset\InheritedPropertiesClass;
+use LazyPropertyTestAsset\LazyGetterClass;
 use LazyPropertyTestAsset\MixedPropertiesClass;
 use PHPUnit_Framework_TestCase;
 
@@ -132,6 +133,15 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
 
         $this->setExpectedException('LazyProperty\\Exception\\MissingLazyPropertyGetterException');
         $instance->initProperties(['nonExisting']);
+    }
+
+    public function testDoesNotRaiseWarningsForNonExistingProperties()
+    {
+        $instance = new LazyGetterClass();
+
+        $instance->initProperties(['property']);
+
+        $this->assertSame('property', $instance->getProperty());
     }
 
     private function getProperty($instance, $propertyName)

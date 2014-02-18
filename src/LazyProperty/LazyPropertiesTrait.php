@@ -62,6 +62,7 @@ trait LazyPropertiesTrait
     public function & __get($name)
     {
         if (isset($this->lazyPropertyAccessors[$name])) {
+            $this->$name = null;
             $this->$name = $this->{'get' . $name}();
         }
 
