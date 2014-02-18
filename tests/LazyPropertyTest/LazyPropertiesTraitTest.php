@@ -105,6 +105,14 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->getProperty($instance, 'protected2'));
     }
 
+    public function testThrowsExceptionOnMissingLazyGetter()
+    {
+        $instance = new MixedPropertiesClass();
+
+        $this->setExpectedException('LazyProperty\\Exception\\MissingLazyPropertyGetterException');
+        $instance->initProperties(['nonExisting']);
+    }
+
     private function getProperty($instance, $propertyName)
     {
         $reflectionClass = new \ReflectionClass($instance);
