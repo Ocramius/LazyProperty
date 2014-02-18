@@ -38,6 +38,8 @@ class AccessScopeChecker
      * @param object $instance
      * @param string $property
      *
+     * @return null
+     *
      * @throws \LazyProperty\Exception\InvalidAccessException
      */
     public static function checkCallerScope(array $caller, $instance, $property)
