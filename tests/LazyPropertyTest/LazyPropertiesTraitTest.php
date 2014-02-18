@@ -144,6 +144,12 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame('property', $instance->getProperty());
     }
 
+    public function testDeniesAccessToNonExistingLazyProperties()
+    {
+        $this->setExpectedException('LazyProperty\\Exception\\InvalidLazyProperty');
+        (new LazyGetterClass())->nonExisting;
+    }
+
     private function getProperty($instance, $propertyName)
     {
         $reflectionClass = new \ReflectionClass($instance);
