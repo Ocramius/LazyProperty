@@ -21,7 +21,7 @@ namespace LazyProperty;
 /**
  * Trait providing lazy initialization of object properties
  *
- * @return
+ * @author Marco Pivetta <ocramius@gmail.com>
  */
 trait LazyPropertiesTrait
 {
