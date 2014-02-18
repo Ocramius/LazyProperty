@@ -177,6 +177,17 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame('LazyPropertyTestAsset\BClass', $this->getProperty($instanceB, 'private'));
     }
 
+    public function testDoesNotReInitializeDefinedProperties()
+    {
+        $instance = new MixedPropertiesClass();
+
+        $instance->public1 = 'defined';
+
+        $instance->initProperties(['public1']);
+
+        $this->assertSame('defined', $instance->public1);
+    }
+
     private function getProperty($instance, $propertyName)
     {
         $reflectionClass = new \ReflectionClass($instance);
