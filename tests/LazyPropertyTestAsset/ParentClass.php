@@ -21,76 +21,16 @@ namespace LazyPropertyTestAsset;
 use LazyProperty\LazyPropertiesTrait;
 
 /**
- * Mixed properties test asset
+ * Base class with mixed properties
  *
  * @author Marco Pivetta <ocramius@gmail.com>
  */
-class MixedPropertiesClass
+class ParentClass
 {
-    use LazyPropertiesTrait;
-
     public $public1;
     public $public2;
     protected $protected1;
     protected $protected2;
     private $private1;
     private $private2;
-
-    public function getProperty($propertyName)
-    {
-        return $this->$propertyName;
-    }
-
-    public function initProperties(array $properties)
-    {
-        $this->initLazyProperties($properties);
-    }
-
-    /**
-     * @return mixed
-     */
-    private function getPrivate1()
-    {
-        return $this->private1 = 'private1';
-    }
-
-    /**
-     * @return mixed
-     */
-    private function getPrivate2()
-    {
-        return $this->private2 = 'private';
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getProtected1()
-    {
-        return $this->protected1 = 'protected1';
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getProtected2()
-    {
-        return $this->protected2 = 'protected2';
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPublic1()
-    {
-        return $this->public1 = 'public1';
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPublic2()
-    {
-        return $this->public2 = 'public2';
-    }
 }
