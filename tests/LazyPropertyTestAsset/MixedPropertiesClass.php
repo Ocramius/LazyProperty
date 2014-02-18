@@ -59,7 +59,7 @@ class MixedPropertiesClass
      */
     private function getPrivate2()
     {
-        return $this->private2 = 'private';
+        return $this->private2 = 'private2';
     }
 
     /**

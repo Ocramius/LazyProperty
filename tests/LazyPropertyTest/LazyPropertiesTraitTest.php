@@ -67,6 +67,27 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->getProperty($instance, 'private2'));
     }
 
+    public function testAllMixedLazyPropertiesAreLazilyInitialized()
+    {
+        $instance = new MixedPropertiesClass();
+
+        $this->assertNull($this->getProperty($instance, 'public1'));
+        $this->assertNull($this->getProperty($instance, 'public2'));
+        $this->assertNull($this->getProperty($instance, 'protected1'));
+        $this->assertNull($this->getProperty($instance, 'protected2'));
+        $this->assertNull($this->getProperty($instance, 'private1'));
+        $this->assertNull($this->getProperty($instance, 'private2'));
+
+        $instance->initProperties(['public1', 'public2', 'protected1', 'protected2', 'private1', 'private2']);
+
+        $this->assertSame('public1', $this->getProperty($instance, 'public1'));
+        $this->assertSame('public2', $this->getProperty($instance, 'public2'));
+        $this->assertSame('protected1', $this->getProperty($instance, 'protected1'));
+        $this->assertSame('protected2', $this->getProperty($instance, 'protected2'));
+        $this->assertSame('private1', $this->getProperty($instance, 'private1'));
+        $this->assertSame('private2', $this->getProperty($instance, 'private2'));
+    }
+
     public function testMixedLazyPropertiesAreLazilyInitializedWithProtectedAccess()
     {
         $instance = new MixedPropertiesClass();
