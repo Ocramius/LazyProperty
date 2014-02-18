@@ -33,4 +33,9 @@ class ParentClass
     protected $protected2;
     private $private1;
     private $private2;
+
+    public function getProperty($propertyName)
+    {
+        return $this->$propertyName;
+    }
 }

@@ -18,6 +18,7 @@
 
 namespace LazyPropertyTest;
 
+use LazyPropertyTestAsset\InheritedPropertiesClass;
 use LazyPropertyTestAsset\MixedPropertiesClass;
 use PHPUnit_Framework_TestCase;
 
@@ -89,7 +90,17 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
 
     private function getProperty($instance, $propertyName)
     {
-        $reflectionProperty = new \ReflectionProperty($instance, $propertyName);
+        $reflectionClass = new \ReflectionClass($instance);
+
+        while ($reflectionClass && ! $reflectionClass->hasProperty($propertyName)) {
+            $reflectionClass = $reflectionClass->getParentClass();
+        }
+
+        if (! $reflectionClass) {
+            throw new \UnexpectedValueException('Property "' . $propertyName . '" does not exist');
+        }
+
+        $reflectionProperty = $reflectionClass->getProperty($propertyName);
 
         $reflectionProperty->setAccessible(true);
 

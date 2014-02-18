@@ -31,50 +31,17 @@ trait LazyPropertiesTrait
     private $lazyPropertyAccessors = [];
 
     /**
+     * Initializes lazy properties so that first access causes their initialization via a getter
+     *
      * @param string[] $lazyPropertyNames
-     * @param bool     $checkLazyPropertyVisibility
      */
-    protected function initLazyProperties(
-        array $lazyPropertyNames,
-        $checkLazyPropertyVisibility = true
-    ) {
+    protected function initLazyProperties(array $lazyPropertyNames)
+    {
         foreach ($lazyPropertyNames as $lazyProperty) {
             $this->lazyPropertyAccessors[$lazyProperty] = false;
 
-            if ($checkLazyPropertyVisibility) {
-                $reflectionProperty = new \ReflectionProperty($this, $lazyProperty);
-
-                if ($reflectionProperty->isPrivate()
-                    && $reflectionProperty->getDeclaringClass()->getName() !== get_class($this)
-                ) {
-                    $declaringClassName = $reflectionProperty->getDeclaringClass()->getName();
-
-                    $this->lazyPropertyAccessors[$lazyProperty] = \Closure::bind(
-                        function & () use ($lazyProperty) {
-                            $this->$lazyProperty = $this->{'get' . $lazyProperty}();
-
-                            return $this->$lazyProperty;
-                        },
-                        $this,
-                        $declaringClassName
-                    );
-
-                    \Closure::bind(
-                        function & () use ($lazyProperty) {
-                            if (! isset($this->$lazyProperty)) {
-                                unset($this->$lazyProperty);
-                            }
-                        },
-                        $this,
-                        $declaringClassName
-                    )->__invoke();
-
-                    continue;
-                }
-
-                if (! isset($this->$lazyProperty)) {
-                    unset($this->$lazyProperty);
-                }
+            if (! isset($this->$lazyProperty)) {
+                unset($this->$lazyProperty);
             }
         }
     }
@@ -87,12 +54,6 @@ trait LazyPropertiesTrait
     public function & __get($name)
     {
         if (isset($this->lazyPropertyAccessors[$name])) {
-            if ($this->lazyPropertyAccessors[$name]) {
-                $accessor = $this->lazyPropertyAccessors[$name];
-
-                return $accessor();
-            }
-
             $this->$name = $this->{'get' . $name}();
         }
 
