@@ -17,6 +17,7 @@
  */
 
 namespace LazyProperty;
+use LazyProperty\Exception\InvalidLazyProperty;
 use LazyProperty\Exception\MissingLazyPropertyGetterException;
 
 /**
@@ -58,13 +59,17 @@ trait LazyPropertiesTrait
      * Magic getter - initializes and gets a property
      *
      * @param string $name
+     *
+     * @throws InvalidLazyProperty if the requested lazy property does not exist
      */
     public function & __get($name)
     {
-        if (isset($this->lazyPropertyAccessors[$name])) {
-            $this->$name = null;
-            $this->$name = $this->{'get' . $name}();
+        if (! isset($this->lazyPropertyAccessors[$name])) {
+            throw InvalidLazyProperty::nonExistingLazyProperty($this, $name);
         }
+
+        $this->$name = null;
+        $this->$name = $this->{'get' . $name}();
 
         return $this->$name;
     }
