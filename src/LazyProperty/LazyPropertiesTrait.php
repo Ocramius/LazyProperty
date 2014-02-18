@@ -17,6 +17,7 @@
  */
 
 namespace LazyProperty;
+use LazyProperty\Exception\MissingLazyPropertyGetterException;
 
 /**
  * Trait providing lazy initialization of object properties
@@ -34,10 +35,17 @@ trait LazyPropertiesTrait
      * Initializes lazy properties so that first access causes their initialization via a getter
      *
      * @param string[] $lazyPropertyNames
+     * @param bool     $checkLazyGetters
+     *
+     * @throws Exception\MissingLazyPropertyGetterException
      */
-    protected function initLazyProperties(array $lazyPropertyNames)
+    protected function initLazyProperties(array $lazyPropertyNames, $checkLazyGetters = true)
     {
         foreach ($lazyPropertyNames as $lazyProperty) {
+            if ($checkLazyGetters && ! method_exists($this, 'get' . $lazyProperty)) {
+                throw MissingLazyPropertyGetterException::fromGetter($this, 'get' . $lazyProperty, $lazyProperty);
+            }
+
             $this->lazyPropertyAccessors[$lazyProperty] = false;
 
             if (! isset($this->$lazyProperty)) {
