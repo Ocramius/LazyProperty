@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LazyPropertyTest;
+namespace LazyPropertyTest\Util;
 
 use LazyProperty\Util\AccessScopeChecker;
 use LazyPropertyTestAsset\InheritedPropertiesClass;
