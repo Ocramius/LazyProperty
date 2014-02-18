@@ -1,6 +1,6 @@
 {
     "name":              "ocramius/lazy-property",
-    "description":       "A library that provides lazy instantiation logic for a object properties",
+    "description":       "A library that provides lazy instantiation logic for object properties",
     "type":              "library",
     "license":           "MIT",
     "homepage":          "https://github.com/Ocramius/LazyProperty",
@@ -9,8 +9,7 @@
         "lazy",
         "lazy loading",
         "lazy instantiation",
-        "map",
-        "service location"
+        "utility"
     ],
     "authors": [
         {
@@ -20,11 +19,10 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3"
+        "php": "~5.4"
     },
     "require-dev": {
-        "phpunit/phpunit":           ">=3.7",
-        "phpmd/phpmd":               "1.5.*",
+        "phpunit/phpunit":           "~3.8",
         "squizlabs/php_codesniffer": "1.4.*",
         "satooshi/php-coveralls":    "~0.6",
         "athletic/athletic":         "~0.1.7"
