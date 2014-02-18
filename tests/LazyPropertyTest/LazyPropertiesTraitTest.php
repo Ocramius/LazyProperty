@@ -30,42 +30,69 @@ use PHPUnit_Framework_TestCase;
  */
 class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var MixedPropertiesClass
+     */
     protected $instance;
+
+    /**
+     * @var \Closure[]
+     */
+    private $inspectors;
 
     public function setUp()
     {
         $this->instance = new MixedPropertiesClass();
-
     }
 
-    public function testMixedLazyProperties()
+    public function testMixedLazyPropertiesAreLazilyInitialized()
     {
         $instance = new MixedPropertiesClass();
 
-        $protected1Reflection = new \ReflectionProperty($instance, 'protected1');
-        $protected2Reflection = new \ReflectionProperty($instance, 'protected2');
-        $private1Reflection   = new \ReflectionProperty($instance, 'private1');
-        $private2Reflection   = new \ReflectionProperty($instance, 'private2');
-
-        $protected1Reflection->setAccessible(true);
-        $protected2Reflection->setAccessible(true);
-        $private1Reflection->setAccessible(true);
-        $private2Reflection->setAccessible(true);
-
-        $this->assertNull($instance->public1);
-        $this->assertNull($instance->public2);
-        $this->assertNull($protected1Reflection->getValue($instance));
-        $this->assertNull($protected2Reflection->getValue($instance));
-        $this->assertNull($private1Reflection->getValue($instance));
-        $this->assertNull($private2Reflection->getValue($instance));
+        $this->assertNull($this->getProperty($instance, 'public1'));
+        $this->assertNull($this->getProperty($instance, 'public2'));
+        $this->assertNull($this->getProperty($instance, 'protected1'));
+        $this->assertNull($this->getProperty($instance, 'protected2'));
+        $this->assertNull($this->getProperty($instance, 'private1'));
+        $this->assertNull($this->getProperty($instance, 'private2'));
 
         $instance->initProperties(['public1', 'protected1', 'private1']);
 
-        $this->assertSame('public1', $instance->public1);
-        $this->assertNull($instance->public2);
-        $this->assertSame('protected1', $protected1Reflection->getValue($instance));
-        $this->assertNull($protected2Reflection->getValue($instance));
-        $this->assertSame('private1', $private1Reflection->getValue($instance));
-        $this->assertNull($private2Reflection->getValue($instance));
+        $this->assertSame('public1', $this->getProperty($instance, 'public1'));
+        $this->assertNull($this->getProperty($instance, 'public2'));
+        $this->assertSame('protected1', $this->getProperty($instance, 'protected1'));
+        $this->assertNull($this->getProperty($instance, 'protected2'));
+        $this->assertSame('private1', $this->getProperty($instance, 'private1'));
+        $this->assertNull($this->getProperty($instance, 'private2'));
+    }
+
+    public function testMixedLazyPropertiesAreLazilyInitializedWithProtectedAccess()
+    {
+        $instance = new MixedPropertiesClass();
+
+        $this->assertNull($this->getProperty($instance, 'public1'));
+        $this->assertNull($this->getProperty($instance, 'public2'));
+        $this->assertNull($this->getProperty($instance, 'protected1'));
+        $this->assertNull($this->getProperty($instance, 'protected2'));
+        $this->assertNull($this->getProperty($instance, 'private1'));
+        $this->assertNull($this->getProperty($instance, 'private2'));
+
+        $instance->initProperties(['public1', 'protected1', 'private1']);
+
+        $this->assertSame('public1', $instance->getProperty('public1'));
+        $this->assertNull($instance->getProperty('public2'));
+        $this->assertSame('protected1', $instance->getProperty('protected1'));
+        $this->assertNull($instance->getProperty('protected2'));
+        $this->assertSame('private1', $instance->getProperty('private1'));
+        $this->assertNull($instance->getProperty('private2'));
+    }
+
+    private function getProperty($instance, $propertyName)
+    {
+        $reflectionProperty = new \ReflectionProperty($instance, $propertyName);
+
+        $reflectionProperty->setAccessible(true);
+
+        return $reflectionProperty->getValue($instance);
     }
 }
