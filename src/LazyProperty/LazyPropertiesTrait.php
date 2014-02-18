@@ -43,7 +43,7 @@ trait LazyPropertiesTrait
      *
      * @throws Exception\MissingLazyPropertyGetterException
      */
-    protected function initLazyProperties(array $lazyPropertyNames, $checkLazyGetters = true)
+    private function initLazyProperties(array $lazyPropertyNames, $checkLazyGetters = true)
     {
         foreach ($lazyPropertyNames as $lazyProperty) {
             if ($checkLazyGetters && ! method_exists($this, 'get' . $lazyProperty)) {
