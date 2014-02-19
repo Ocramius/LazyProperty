@@ -30,7 +30,7 @@ use LazyProperty\Util\AccessScopeChecker;
 trait LazyPropertiesTrait
 {
     /**
-     * @var bool[]|\Closure[] indexed by property name
+     * @var bool[] indexed by property name
      */
     private $lazyPropertyAccessors = [];
 
