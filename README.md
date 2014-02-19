@@ -74,7 +74,8 @@ class SomeService
 
     public function doWork()
     {
-        $this->getDependency()->delegateWork();
+        // look ma! no getter!
+        $this->dependency->delegateWork();
     }
 
     protected function getDependency()
@@ -98,3 +99,13 @@ class SomethingElse extends SomeService
     }
 }
 ```
+
+Please note that a getter is *required* in order for the property to be lazy.
+
+## Performance notes
+
+Using `LazyProperty\LazyPropertiesTrait` allows to speed up applications where a massive
+amount of getter calls is going on in private/protected scope.
+There is some minor overhead in calling `SomeService#initLazyProperties()`, as well as in
+the first property access, but it should be negligible.
+
