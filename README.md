@@ -5,7 +5,6 @@ This small library aims at providing a very simple and efficient loading of lazy
 [![Build Status](https://travis-ci.org/Ocramius/LazyProperty.png?branch=master)](https://travis-ci.org/Ocramius/LazyProperty)
 [![Code Coverage](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/badges/coverage.png?s=e66a6e178d3bd3928562c2f87ded32321d00665e)](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/badges/quality-score.png?s=a9ba5b80c811ffd9fd552f160ca6a5ac7b959736)](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/)
-[![Total Downloads](https://poser.pugx.org/ocramius/lazy-property/downloads.png)](https://packagist.org/packages/ocramius/lazy-property)
 [![Latest Stable Version](https://poser.pugx.org/ocramius/lazy-property/v/stable.png)](https://packagist.org/packages/ocramius/lazy-property)
 [![Latest Unstable Version](https://poser.pugx.org/ocramius/lazy-property/v/unstable.png)](https://packagist.org/packages/ocramius/lazy-property)
 [![Dependency Status](https://www.versioneye.com/php/ocramius:lazy-property/dev-master/badge.png)](https://www.versioneye.com/php/ocramius:lazy-property/dev-master)
