@@ -37,6 +37,11 @@ class AccessScopeCheckerTest extends PHPUnit_Framework_TestCase
         $this->assertNull(AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'backupGlobals'));
     }
 
+    public function testAllowsAccessToPublicProperties()
+    {
+        $this->assertNull(AccessScopeChecker::checkCallerScope(['object' => $this], new ParentClass(), 'public1'));
+    }
+    
     public function testAllowsAccessFromSubClass()
     {
         $this->assertNull(AccessScopeChecker::checkCallerScope(
