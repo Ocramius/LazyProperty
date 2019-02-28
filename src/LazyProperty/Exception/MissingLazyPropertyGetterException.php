@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyProperty\Exception;
 
 use InvalidArgumentException;
@@ -36,7 +38,7 @@ class MissingLazyPropertyGetterException extends InvalidArgumentException implem
      *
      * @return self
      */
-    public static function fromGetter($instance, $getter, $property)
+    public static function fromGetter(object $instance, string $getter, string $property): self
     {
         return new self(sprintf(
             'The getter "%s" for lazy property "%s" is not defined in "%s#%s"',

@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyPropertyTest\Exception;
 
 use LazyProperty\Exception\MissingLazyPropertyGetterException;
@@ -31,7 +33,7 @@ use stdClass;
  */
 class MissingLazyPropertyGetterExceptionTest extends TestCase
 {
-    public function testInvalidContext()
+    public function testInvalidContext(): void
     {
         $this->assertStringMatchesFormat(
             'The getter "getFoo" for lazy property "foo" is not defined in "stdClass#%s"',

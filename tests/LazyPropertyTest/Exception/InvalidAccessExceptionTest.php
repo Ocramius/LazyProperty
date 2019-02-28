@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyPropertyTest\Exception;
 
 use LazyProperty\Exception\InvalidAccessException;
@@ -31,7 +33,7 @@ use stdClass;
  */
 class InvalidAccessExceptionTest extends TestCase
 {
-    public function testInvalidContext()
+    public function testInvalidContext(): void
     {
         $this->assertStringMatchesFormat(
             'The requested lazy property "foo" of "stdClass#%s" is not accessible from the context of in "'

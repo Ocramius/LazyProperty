@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyProperty\Exception;
 
 use InvalidArgumentException;
@@ -36,7 +38,7 @@ class InvalidAccessException extends InvalidArgumentException implements Excepti
      *
      * @return self
      */
-    public static function invalidContext($caller, $instance, $property)
+    public static function invalidContext($caller, object $instance, string $property): self 
     {
         return new self(sprintf(
             'The requested lazy property "%s" of "%s#%s" is not accessible from the context of in "%s"',

@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyPropertyTestAsset;
 
 use LazyProperty\LazyPropertiesTrait;
@@ -31,7 +33,7 @@ class LazyGetterClass
 
     public $property;
 
-    public function initProperties(array $properties)
+    public function initProperties(array $properties): void
     {
         $this->initLazyProperties($properties);
     }
@@ -39,7 +41,7 @@ class LazyGetterClass
     /**
      * @return string
      */
-    public function getProperty()
+    public function getProperty(): string
     {
         if (null === $this->property) {
             return $this->property = 'property';

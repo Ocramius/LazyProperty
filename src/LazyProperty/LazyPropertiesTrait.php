@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyProperty;
 
 use LazyProperty\Exception\InvalidLazyProperty;
@@ -42,7 +44,7 @@ trait LazyPropertiesTrait
      *
      * @throws Exception\MissingLazyPropertyGetterException
      */
-    private function initLazyProperties(array $lazyPropertyNames, $checkLazyGetters = true)
+    private function initLazyProperties(array $lazyPropertyNames, bool $checkLazyGetters = true): void
     {
         foreach ($lazyPropertyNames as $lazyProperty) {
             if ($checkLazyGetters && ! method_exists($this, 'get' . $lazyProperty)) {
@@ -59,12 +61,15 @@ trait LazyPropertiesTrait
 
     /**
      * Magic getter - initializes and gets a property
-     *
+     * 
      * @param string $name
-     *
+     * 
+     * @return mixed
+     * 
      * @throws InvalidLazyProperty if the requested lazy property does not exist
+     * @throws \ReflectionException
      */
-    public function & __get($name)
+    public function & __get(string $name)
     {
         if (! isset($this->lazyPropertyAccessors[$name])) {
             throw InvalidLazyProperty::nonExistingLazyProperty($this, $name);

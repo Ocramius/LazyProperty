@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyPropertyTestAsset;
 
 /**
@@ -32,7 +34,7 @@ class ParentClass
     private $private1;
     private $private2;
 
-    public function getProperty($propertyName)
+    public function getProperty(string $propertyName): string
     {
         return $this->$propertyName;
     }
@@ -40,7 +42,7 @@ class ParentClass
     /**
      * @return string
      */
-    private function getPrivate1()
+    private function getPrivate1(): string
     {
         return $this->private1 = 'private1';
     }
@@ -48,7 +50,7 @@ class ParentClass
     /**
      * @return string
      */
-    private function getPrivate2()
+    private function getPrivate2(): string
     {
         return $this->private2 = 'private';
     }
@@ -56,7 +58,7 @@ class ParentClass
     /**
      * @return string
      */
-    protected function getProtected1()
+    protected function getProtected1(): string
     {
         return $this->protected1 = 'protected1';
     }
@@ -64,7 +66,7 @@ class ParentClass
     /**
      * @return string
      */
-    protected function getProtected2()
+    protected function getProtected2(): string
     {
         return $this->protected2 = 'protected2';
     }
@@ -72,7 +74,7 @@ class ParentClass
     /**
      * @return string
      */
-    public function getPublic1()
+    public function getPublic1(): string
     {
         return $this->public1 = 'public1';
     }
@@ -80,7 +82,7 @@ class ParentClass
     /**
      * @return string
      */
-    public function getPublic2()
+    public function getPublic2(): string
     {
         return $this->public2 = 'public2';
     }

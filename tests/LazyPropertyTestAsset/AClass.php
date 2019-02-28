@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyPropertyTestAsset;
 
 use LazyProperty\LazyPropertiesTrait;
@@ -31,7 +33,7 @@ class AClass
 
     private $private;
 
-    public function initALazyProperties()
+    public function initALazyProperties(): void
     {
         $this->initLazyProperties(['private']);
     }

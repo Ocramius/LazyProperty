@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyProperty\Util;
 
 use LazyProperty\Exception\InvalidAccessException;
@@ -29,19 +31,20 @@ class AccessScopeChecker
 {
     /**
      * Utility used to verify that access to lazy properties is not happening from outside allowed scopes
-     *
+     * 
      * @internal
      * @private
-     *
-     * @param array  $caller   the caller array as from the debug stack trace entry
+     * 
+     * @param array $caller the caller array as from the debug stack trace entry
      * @param object $instance
      * @param string $property
-     *
-     * @return null
-     *
+     * 
+     * @return void
+     * 
      * @throws \LazyProperty\Exception\InvalidAccessException
+     * @throws \ReflectionException
      */
-    public static function checkCallerScope(array $caller, $instance, $property)
+    public static function checkCallerScope(array $caller, object $instance, string $property): void 
     {
         $reflectionProperty = new \ReflectionProperty($instance, $property);
 
@@ -59,12 +62,10 @@ class AccessScopeChecker
                 || $callerClass === 'ReflectionProperty'
                 || is_subclass_of($callerClass, 'ReflectionProperty')
             ) {
-                return null;
+                return;
             }
 
             throw InvalidAccessException::invalidContext($caller, $instance, $property);
         }
-        
-        return null;
     }
 }

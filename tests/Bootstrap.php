@@ -16,9 +16,11 @@
  * and is licensed under the MIT license.
  */
 
-ini_set('error_reporting', E_ALL);
+declare(strict_types=1);
 
-$files = array(__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../../autoload.php');
+ini_set('error_reporting', (string) E_ALL);
+
+$files = [__DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../../autoload.php'];
 
 foreach ($files as $file) {
     if (file_exists($file)) {

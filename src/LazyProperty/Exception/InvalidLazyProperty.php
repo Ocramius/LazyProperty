@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyProperty\Exception;
 
 use LogicException;
@@ -35,7 +37,7 @@ class InvalidLazyProperty extends LogicException implements ExceptionInterface
      *
      * @return self
      */
-    public static function nonExistingLazyProperty($instance, $property)
+    public static function nonExistingLazyProperty(object $instance, string $property): self
     {
         return new self(sprintf(
             'The requested lazy property "%s" is not defined in "%s#%s"',

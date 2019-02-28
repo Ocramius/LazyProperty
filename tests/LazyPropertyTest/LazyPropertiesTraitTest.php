@@ -16,6 +16,8 @@
  * and is licensed under the MIT license.
  */
 
+declare(strict_types=1);
+
 namespace LazyPropertyTest;
 
 use LazyPropertyTestAsset\AClass;
@@ -44,7 +46,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->instance = new MixedPropertiesClass();
     }
 
-    public function testMixedLazyPropertiesAreLazilyInitialized()
+    public function testMixedLazyPropertiesAreLazilyInitialized(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -65,7 +67,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertNull($this->getProperty($instance, 'private2'));
     }
 
-    public function testAllMixedLazyPropertiesAreLazilyInitialized()
+    public function testAllMixedLazyPropertiesAreLazilyInitialized(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -86,7 +88,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertSame('private2', $this->getProperty($instance, 'private2'));
     }
 
-    public function testMixedLazyPropertiesAreLazilyInitializedWithProtectedAccess()
+    public function testMixedLazyPropertiesAreLazilyInitializedWithProtectedAccess(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -107,7 +109,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertNull($instance->getProperty('private2'));
     }
 
-    public function testMixedInheritedLazyPropertiesAreLazilyInitialized()
+    public function testMixedInheritedLazyPropertiesAreLazilyInitialized(): void
     {
         $instance = new InheritedPropertiesClass();
 
@@ -124,7 +126,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertNull($this->getProperty($instance, 'protected2'));
     }
 
-    public function testThrowsExceptionOnMissingLazyGetter()
+    public function testThrowsExceptionOnMissingLazyGetter(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -132,7 +134,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance->initProperties(['nonExisting']);
     }
 
-    public function testDoesNotRaiseWarningsForNonExistingProperties()
+    public function testDoesNotRaiseWarningsForNonExistingProperties(): void
     {
         $instance = new LazyGetterClass();
 
@@ -141,13 +143,13 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertSame('property', $instance->getProperty());
     }
 
-    public function testDeniesAccessToNonExistingLazyProperties()
+    public function testDeniesAccessToNonExistingLazyProperties(): void
     {
         $this->expectException('LazyProperty\\Exception\\InvalidLazyProperty');
         (new LazyGetterClass())->nonExisting;
     }
 
-    public function testDeniesAccessToProtectedLazyProperties()
+    public function testDeniesAccessToProtectedLazyProperties(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -156,7 +158,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance->protected1;
     }
 
-    public function testDeniesAccessToPrivateLazyProperties()
+    public function testDeniesAccessToPrivateLazyProperties(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -165,7 +167,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance->private1;
     }
 
-    public function testGetMultiInheritanceProperties()
+    public function testGetMultiInheritanceProperties(): void
     {
         $instanceA = new AClass();
         $instanceB = new BClass();
@@ -177,7 +179,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertSame('LazyPropertyTestAsset\BClass', $this->getProperty($instanceB, 'private'));
     }
 
-    public function testDoesNotReInitializeDefinedProperties()
+    public function testDoesNotReInitializeDefinedProperties(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -189,9 +191,12 @@ class LazyPropertiesTraitTest extends TestCase
     }
 
     /**
+     * @param object $instance
      * @param string $propertyName
+     * @return mixed
+     * @throws \ReflectionException
      */
-    private function getProperty($instance, $propertyName)
+    private function getProperty(object $instance, string $propertyName)
     {
         $reflectionClass = new \ReflectionClass($instance);
 
