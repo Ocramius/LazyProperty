@@ -71,31 +71,31 @@ class AccessScopeCheckerTest extends PHPUnit_Framework_TestCase
 
     public function testDisallowsAccessFromGlobalOrFunctionScope()
     {
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
+        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
+        AccessScopeChecker::checkCallerScope(
             [],
             new ParentClass(),
             'private1'
-        ));
+        );
     }
 
     public function testDisallowsPrivateAccessFromDifferentScope()
     {
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
+        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
+        AccessScopeChecker::checkCallerScope(
             ['object' => $this],
             new ParentClass(),
             'private1'
-        ));
+        );
     }
 
     public function testDisallowsProtectedAccessFromDifferentScope()
     {
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
+        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
+        AccessScopeChecker::checkCallerScope(
             ['object' => $this],
             new ParentClass(),
             'private1'
-        ));
+        );
     }
 }

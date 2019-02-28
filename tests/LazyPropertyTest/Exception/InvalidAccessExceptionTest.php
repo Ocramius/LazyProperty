@@ -19,7 +19,7 @@
 namespace LazyPropertyTest\Exception;
 
 use LazyProperty\Exception\InvalidAccessException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
@@ -29,7 +29,7 @@ use stdClass;
  *
  * @covers \LazyProperty\Exception\InvalidAccessException
  */
-class InvalidAccessExceptionTest extends PHPUnit_Framework_TestCase
+class InvalidAccessExceptionTest extends TestCase
 {
     public function testInvalidContext()
     {

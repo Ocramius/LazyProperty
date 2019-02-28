@@ -5,3 +5,5 @@ composer.phar
 phpunit.xml
 phpmd.xml
 phpdox.xml
+infection-log.txt
+infection.json

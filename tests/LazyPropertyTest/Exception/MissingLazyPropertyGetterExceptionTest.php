@@ -19,7 +19,7 @@
 namespace LazyPropertyTest\Exception;
 
 use LazyProperty\Exception\MissingLazyPropertyGetterException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
@@ -29,7 +29,7 @@ use stdClass;
  *
  * @covers \LazyProperty\Exception\MissingLazyPropertyGetterException
  */
-class MissingLazyPropertyGetterExceptionTest extends PHPUnit_Framework_TestCase
+class MissingLazyPropertyGetterExceptionTest extends TestCase
 {
     public function testInvalidContext()
     {

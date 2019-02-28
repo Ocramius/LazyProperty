@@ -23,7 +23,7 @@ use LazyPropertyTestAsset\BClass;
 use LazyPropertyTestAsset\InheritedPropertiesClass;
 use LazyPropertyTestAsset\LazyGetterClass;
 use LazyPropertyTestAsset\MixedPropertiesClass;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for {@see \LazyProperty\LazyPropertiesTrait}
@@ -32,14 +32,14 @@ use PHPUnit_Framework_TestCase;
  *
  * @covers \LazyProperty\LazyPropertiesTrait
  */
-class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
+class LazyPropertiesTraitTest extends TestCase
 {
     /**
      * @var MixedPropertiesClass
      */
     protected $instance;
 
-    public function setUp()
+    public function setUp(): void 
     {
         $this->instance = new MixedPropertiesClass();
     }
@@ -128,7 +128,7 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
     {
         $instance = new MixedPropertiesClass();
 
-        $this->setExpectedException('LazyProperty\\Exception\\MissingLazyPropertyGetterException');
+        $this->expectException('LazyProperty\\Exception\\MissingLazyPropertyGetterException');
         $instance->initProperties(['nonExisting']);
     }
 
@@ -143,7 +143,7 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
 
     public function testDeniesAccessToNonExistingLazyProperties()
     {
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidLazyProperty');
+        $this->expectException('LazyProperty\\Exception\\InvalidLazyProperty');
         (new LazyGetterClass())->nonExisting;
     }
 
@@ -152,7 +152,7 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $instance = new MixedPropertiesClass();
 
         $instance->initProperties(['protected1']);
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
         $instance->protected1;
     }
 
@@ -161,7 +161,7 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $instance = new MixedPropertiesClass();
 
         $instance->initProperties(['private1']);
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
         $instance->private1;
     }
 
