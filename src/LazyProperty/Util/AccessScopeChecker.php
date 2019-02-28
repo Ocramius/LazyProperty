@@ -44,7 +44,7 @@ class AccessScopeChecker
      * @throws \LazyProperty\Exception\InvalidAccessException
      * @throws \ReflectionException
      */
-    public static function checkCallerScope(array $caller, object $instance, string $property): void 
+    public static function checkCallerScope(array $caller, object $instance, string $property): void
     {
         $reflectionProperty = new \ReflectionProperty($instance, $property);
 
