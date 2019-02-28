@@ -59,10 +59,12 @@ class AccessScopeChecker
                 || $callerClass === 'ReflectionProperty'
                 || is_subclass_of($callerClass, 'ReflectionProperty')
             ) {
-                return;
+                return null;
             }
 
             throw InvalidAccessException::invalidContext($caller, $instance, $property);
         }
+        
+        return null;
     }
 }
