@@ -38,7 +38,7 @@ class InvalidAccessException extends InvalidArgumentException implements Excepti
      *
      * @return self
      */
-    public static function invalidContext($caller, object $instance, string $property): self 
+    public static function invalidContext($caller, object $instance, string $property): self
     {
         return new self(sprintf(
             'The requested lazy property "%s" of "%s#%s" is not accessible from the context of in "%s"',

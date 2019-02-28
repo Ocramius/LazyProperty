@@ -31,16 +31,16 @@ class AccessScopeChecker
 {
     /**
      * Utility used to verify that access to lazy properties is not happening from outside allowed scopes
-     * 
+     *
      * @internal
      * @private
-     * 
+     *
      * @param array $caller the caller array as from the debug stack trace entry
      * @param object $instance
      * @param string $property
-     * 
+     *
      * @return void
-     * 
+     *
      * @throws \LazyProperty\Exception\InvalidAccessException
      * @throws \ReflectionException
      */

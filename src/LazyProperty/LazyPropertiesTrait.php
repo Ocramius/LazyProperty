@@ -61,11 +61,11 @@ trait LazyPropertiesTrait
 
     /**
      * Magic getter - initializes and gets a property
-     * 
+     *
      * @param string $name
-     * 
+     *
      * @return mixed
-     * 
+     *
      * @throws InvalidLazyProperty if the requested lazy property does not exist
      * @throws \ReflectionException
      */
