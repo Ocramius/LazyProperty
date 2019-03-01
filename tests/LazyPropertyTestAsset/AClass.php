@@ -24,8 +24,6 @@ use LazyProperty\LazyPropertiesTrait;
 
 /**
  * Mixed properties
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class AClass
 {
@@ -33,13 +31,13 @@ class AClass
 
     private $private;
 
-    public function initALazyProperties(): void
+    public function initALazyProperties() : void
     {
         $this->initLazyProperties(['private']);
     }
 
     private function getPrivate()
     {
-        return $this->private ?: $this->private = __CLASS__;
+        return $this->private ?: $this->private = self::class;
     }
 }

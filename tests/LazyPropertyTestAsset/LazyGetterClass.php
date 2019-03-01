@@ -24,8 +24,6 @@ use LazyProperty\LazyPropertiesTrait;
 
 /**
  * Test asset with lazy getters
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class LazyGetterClass
 {
@@ -33,17 +31,14 @@ class LazyGetterClass
 
     public $property;
 
-    public function initProperties(array $properties): void
+    public function initProperties(array $properties) : void
     {
         $this->initLazyProperties($properties);
     }
 
-    /**
-     * @return string
-     */
-    public function getProperty(): string
+    public function getProperty() : string
     {
-        if (null === $this->property) {
+        if ($this->property === null) {
             return $this->property = 'property';
         }
 

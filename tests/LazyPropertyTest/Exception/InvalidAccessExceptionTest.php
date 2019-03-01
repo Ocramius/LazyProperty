@@ -27,17 +27,15 @@ use stdClass;
 /**
  * Tests for {@see \LazyProperty\Exception\InvalidAccessException}
  *
- * @author Marco Pivetta <ocramius@gmail.com>
- *
  * @covers \LazyProperty\Exception\InvalidAccessException
  */
 class InvalidAccessExceptionTest extends TestCase
 {
-    public function testInvalidContext(): void
+    public function testInvalidContext() : void
     {
         $this->assertStringMatchesFormat(
             'The requested lazy property "foo" of "stdClass#%s" is not accessible from the context of in "'
-            . __CLASS__ . '"',
+            . self::class . '"',
             InvalidAccessException::invalidContext($this, new stdClass(), 'foo')->getMessage()
         );
     }

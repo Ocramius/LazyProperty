@@ -24,14 +24,12 @@ use LazyProperty\LazyPropertiesTrait;
 
 /**
  * Mixed properties
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class InheritedPropertiesClass extends ParentClass
 {
     use LazyPropertiesTrait;
 
-    public function initProperties(array $properties): void
+    public function initProperties(array $properties) : void
     {
         $this->initLazyProperties($properties);
     }

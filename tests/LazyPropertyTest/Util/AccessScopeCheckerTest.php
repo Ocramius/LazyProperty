@@ -24,39 +24,39 @@ use LazyProperty\Util\AccessScopeChecker;
 use LazyPropertyTestAsset\InheritedPropertiesClass;
 use LazyPropertyTestAsset\ParentClass;
 use PHPUnit\Framework\TestCase;
+use ReflectionProperty;
+use Throwable;
 
 /**
  * Tests for {@see \LazyProperty\Util\AccessScopeChecker}
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  *
  * @covers \LazyProperty\Util\AccessScopeChecker
  */
 class AccessScopeCheckerTest extends TestCase
 {
-    public function testAllowsAccessFromSameInstance(): void
+    public function testAllowsAccessFromSameInstance() : void
     {
         try {
             AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'backupGlobals');
-        } catch (\Exception $exception) {
+        } catch (Throwable $exception) {
             $this->fail('Unexpected exception.');
         }
-        
+
         $this->assertTrue(true);
     }
 
-    public function testAllowsAccessToPublicProperties(): void
+    public function testAllowsAccessToPublicProperties() : void
     {
         try {
             AccessScopeChecker::checkCallerScope(['object' => $this], new ParentClass(), 'public1');
-        } catch (\Exception $exception) {
+        } catch (Throwable $exception) {
             $this->fail('Unexpected exception.');
         }
-        
+
         $this->assertTrue(true);
     }
-    
-    public function testAllowsAccessFromSubClass(): void
+
+    public function testAllowsAccessFromSubClass() : void
     {
         try {
             AccessScopeChecker::checkCallerScope(
@@ -64,14 +64,14 @@ class AccessScopeCheckerTest extends TestCase
                 new ParentClass(),
                 'protected1'
             );
-        } catch (\Exception $exception) {
+        } catch (Throwable $exception) {
             $this->fail('Unexpected exception.');
         }
-        
+
         $this->assertTrue(true);
     }
 
-    public function testAllowsAccessFromSameClass(): void
+    public function testAllowsAccessFromSameClass() : void
     {
         try {
             AccessScopeChecker::checkCallerScope(
@@ -79,29 +79,29 @@ class AccessScopeCheckerTest extends TestCase
                 new ParentClass(),
                 'private1'
             );
-        } catch (\Exception $exception) {
+        } catch (Throwable $exception) {
             $this->fail('Unexpected exception.');
         }
-        
+
         $this->assertTrue(true);
     }
 
-    public function testAllowsAccessFromReflectionProperty(): void
+    public function testAllowsAccessFromReflectionProperty() : void
     {
         try {
             AccessScopeChecker::checkCallerScope(
-                ['object' => new \ReflectionProperty(new ParentClass(), 'private1')],
+                ['object' => new ReflectionProperty(new ParentClass(), 'private1')],
                 new ParentClass(),
                 'private1'
             );
-        } catch (\Exception $exception) {
+        } catch (Throwable $exception) {
             $this->fail('Unexpected exception.');
         }
-        
+
         $this->assertTrue(true);
     }
 
-    public function testDisallowsAccessFromGlobalOrFunctionScope(): void
+    public function testDisallowsAccessFromGlobalOrFunctionScope() : void
     {
         $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
         AccessScopeChecker::checkCallerScope(
@@ -111,7 +111,7 @@ class AccessScopeCheckerTest extends TestCase
         );
     }
 
-    public function testDisallowsPrivateAccessFromDifferentScope(): void
+    public function testDisallowsPrivateAccessFromDifferentScope() : void
     {
         $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
         AccessScopeChecker::checkCallerScope(
@@ -121,7 +121,7 @@ class AccessScopeCheckerTest extends TestCase
         );
     }
 
-    public function testDisallowsProtectedAccessFromDifferentScope(): void
+    public function testDisallowsProtectedAccessFromDifferentScope() : void
     {
         $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
         AccessScopeChecker::checkCallerScope(

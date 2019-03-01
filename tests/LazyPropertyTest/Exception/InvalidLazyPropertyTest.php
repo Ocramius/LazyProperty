@@ -27,13 +27,11 @@ use stdClass;
 /**
  * Tests for {@see \LazyProperty\Exception\InvalidLazyProperty}
  *
- * @author Marco Pivetta <ocramius@gmail.com>
- *
  * @covers \LazyProperty\Exception\InvalidLazyProperty
  */
 class InvalidLazyPropertyTest extends TestCase
 {
-    public function testInvalidContext(): void
+    public function testInvalidContext() : void
     {
         $this->assertStringMatchesFormat(
             'The requested lazy property "foo" is not defined in "stdClass#%s"',

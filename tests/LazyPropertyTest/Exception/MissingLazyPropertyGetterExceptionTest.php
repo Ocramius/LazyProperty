@@ -27,13 +27,11 @@ use stdClass;
 /**
  * Tests for {@see \LazyProperty\Exception\MissingLazyPropertyGetterException}
  *
- * @author Marco Pivetta <ocramius@gmail.com>
- *
  * @covers \LazyProperty\Exception\MissingLazyPropertyGetterException
  */
 class MissingLazyPropertyGetterExceptionTest extends TestCase
 {
-    public function testInvalidContext(): void
+    public function testInvalidContext() : void
     {
         $this->assertStringMatchesFormat(
             'The getter "getFoo" for lazy property "foo" is not defined in "stdClass#%s"',

@@ -21,23 +21,16 @@ declare(strict_types=1);
 namespace LazyProperty\Exception;
 
 use LogicException;
+use function get_class;
+use function spl_object_hash;
+use function sprintf;
 
 /**
  * Exception for missing lazy properties
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class InvalidLazyProperty extends LogicException implements ExceptionInterface
 {
-    /**
-     * Named constructor.
-     *
-     * @param object $instance
-     * @param string $property
-     *
-     * @return self
-     */
-    public static function nonExistingLazyProperty(object $instance, string $property): self
+    public static function nonExistingLazyProperty(object $instance, string $property) : self
     {
         return new self(sprintf(
             'The requested lazy property "%s" is not defined in "%s#%s"',

@@ -21,11 +21,13 @@ declare(strict_types=1);
 namespace LazyProperty\Util;
 
 use LazyProperty\Exception\InvalidAccessException;
+use ReflectionException;
+use ReflectionProperty;
+use function get_class;
+use function is_subclass_of;
 
 /**
  * Utility class to identify scope access violations
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class AccessScopeChecker
 {
@@ -33,20 +35,17 @@ class AccessScopeChecker
      * Utility used to verify that access to lazy properties is not happening from outside allowed scopes
      *
      * @internal
-     * @private
      *
      * @param array $caller the caller array as from the debug stack trace entry
-     * @param object $instance
-     * @param string $property
      *
-     * @return void
+     * @throws InvalidAccessException
+     * @throws ReflectionException
      *
-     * @throws \LazyProperty\Exception\InvalidAccessException
-     * @throws \ReflectionException
+     * @private
      */
-    public static function checkCallerScope(array $caller, object $instance, string $property): void
+    public static function checkCallerScope(array $caller, object $instance, string $property) : void
     {
-        $reflectionProperty = new \ReflectionProperty($instance, $property);
+        $reflectionProperty = new ReflectionProperty($instance, $property);
 
         if (! $reflectionProperty->isPublic()) {
             if (! isset($caller['object'])) {

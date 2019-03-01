@@ -24,8 +24,6 @@ use LazyProperty\LazyPropertiesTrait;
 
 /**
  * Mixed properties test asset
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class MixedPropertiesClass
 {
@@ -38,64 +36,42 @@ class MixedPropertiesClass
     private $private1;
     private $private2;
 
-    /**
-     * @param string $propertyName
-     * @return string
-     */
-    public function getProperty(string $propertyName): ?string
+    public function getProperty(string $propertyName) : ?string
     {
         return $this->$propertyName;
     }
 
-    public function initProperties(array $properties): void
+    public function initProperties(array $properties) : void
     {
         $this->initLazyProperties($properties);
     }
 
-    /**
-     * @return string
-     */
-    private function getPrivate1(): string
+    private function getPrivate1() : string
     {
         return $this->private1 = 'private1';
     }
 
-    /**
-     * @return string
-     */
-    private function getPrivate2(): string
+    private function getPrivate2() : string
     {
         return $this->private2 = 'private2';
     }
 
-    /**
-     * @return string
-     */
-    protected function getProtected1(): string
+    protected function getProtected1() : string
     {
         return $this->protected1 = 'protected1';
     }
 
-    /**
-     * @return string
-     */
-    protected function getProtected2(): string
+    protected function getProtected2() : string
     {
         return $this->protected2 = 'protected2';
     }
 
-    /**
-     * @return string
-     */
-    public function getPublic1(): string
+    public function getPublic1() : string
     {
         return $this->public1 = 'public1';
     }
 
-    /**
-     * @return string
-     */
-    public function getPublic2(): string
+    public function getPublic2() : string
     {
         return $this->public2 = 'public2';
     }

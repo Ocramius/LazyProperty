@@ -21,24 +21,16 @@ declare(strict_types=1);
 namespace LazyProperty\Exception;
 
 use InvalidArgumentException;
+use function get_class;
+use function spl_object_hash;
+use function sprintf;
 
 /**
  * Exception for missing property getters
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class MissingLazyPropertyGetterException extends InvalidArgumentException implements ExceptionInterface
 {
-    /**
-     * Named constructor.
-     *
-     * @param object $instance
-     * @param string $getter
-     * @param string $property
-     *
-     * @return self
-     */
-    public static function fromGetter(object $instance, string $getter, string $property): self
+    public static function fromGetter(object $instance, string $getter, string $property) : self
     {
         return new self(sprintf(
             'The getter "%s" for lazy property "%s" is not defined in "%s#%s"',

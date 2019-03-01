@@ -23,28 +23,27 @@ namespace LazyProperty;
 use LazyProperty\Exception\InvalidLazyProperty;
 use LazyProperty\Exception\MissingLazyPropertyGetterException;
 use LazyProperty\Util\AccessScopeChecker;
+use ReflectionException;
+use const DEBUG_BACKTRACE_PROVIDE_OBJECT;
+use function debug_backtrace;
+use function method_exists;
 
 /**
  * Trait providing lazy initialization of object properties
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 trait LazyPropertiesTrait
 {
-    /**
-     * @var bool[] indexed by property name
-     */
+    /** @var bool[] indexed by property name */
     private $lazyPropertyAccessors = [];
 
     /**
      * Initializes lazy properties so that first access causes their initialization via a getter
      *
      * @param string[] $lazyPropertyNames
-     * @param bool     $checkLazyGetters
      *
      * @throws Exception\MissingLazyPropertyGetterException
      */
-    private function initLazyProperties(array $lazyPropertyNames, bool $checkLazyGetters = true): void
+    private function initLazyProperties(array $lazyPropertyNames, bool $checkLazyGetters = true) : void
     {
         foreach ($lazyPropertyNames as $lazyProperty) {
             if ($checkLazyGetters && ! method_exists($this, 'get' . $lazyProperty)) {
@@ -53,21 +52,21 @@ trait LazyPropertiesTrait
 
             $this->lazyPropertyAccessors[$lazyProperty] = false;
 
-            if (! isset($this->$lazyProperty)) {
-                unset($this->$lazyProperty);
+            if (isset($this->$lazyProperty)) {
+                continue;
             }
+
+            unset($this->$lazyProperty);
         }
     }
 
     /**
      * Magic getter - initializes and gets a property
      *
-     * @param string $name
-     *
      * @return mixed
      *
      * @throws InvalidLazyProperty if the requested lazy property does not exist
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function & __get(string $name)
     {

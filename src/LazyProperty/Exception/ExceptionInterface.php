@@ -22,8 +22,6 @@ namespace LazyProperty\Exception;
 
 /**
  * Base Exception for LazyProperty
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 interface ExceptionInterface
 {

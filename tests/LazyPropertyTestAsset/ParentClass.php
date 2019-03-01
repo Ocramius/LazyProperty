@@ -22,8 +22,6 @@ namespace LazyPropertyTestAsset;
 
 /**
  * Base class with mixed properties
- *
- * @author Marco Pivetta <ocramius@gmail.com>
  */
 class ParentClass
 {
@@ -34,55 +32,37 @@ class ParentClass
     private $private1;
     private $private2;
 
-    public function getProperty(string $propertyName): string
+    public function getProperty(string $propertyName) : string
     {
         return $this->$propertyName;
     }
 
-    /**
-     * @return string
-     */
-    private function getPrivate1(): string
+    private function getPrivate1() : string
     {
         return $this->private1 = 'private1';
     }
 
-    /**
-     * @return string
-     */
-    private function getPrivate2(): string
+    private function getPrivate2() : string
     {
         return $this->private2 = 'private';
     }
 
-    /**
-     * @return string
-     */
-    protected function getProtected1(): string
+    protected function getProtected1() : string
     {
         return $this->protected1 = 'protected1';
     }
 
-    /**
-     * @return string
-     */
-    protected function getProtected2(): string
+    protected function getProtected2() : string
     {
         return $this->protected2 = 'protected2';
     }
 
-    /**
-     * @return string
-     */
-    public function getPublic1(): string
+    public function getPublic1() : string
     {
         return $this->public1 = 'public1';
     }
 
-    /**
-     * @return string
-     */
-    public function getPublic2(): string
+    public function getPublic2() : string
     {
         return $this->public2 = 'public2';
     }
