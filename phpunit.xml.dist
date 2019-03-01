@@ -1,20 +1,14 @@
 <?xml version="1.0"?>
-<phpunit
-    bootstrap="./tests/Bootstrap.php"
-    colors="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    verbose="true"
-    stopOnFailure="false"
-    processIsolation="false"
-    backupGlobals="false"
->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         colors="true"
+         verbose="true"
+        bootstrap="vendor/autoload.php">
     <testsuite name="LazyProperty tests">
         <directory>./tests/LazyPropertyTest</directory>
     </testsuite>
     <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
+        <whitelist>
             <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
