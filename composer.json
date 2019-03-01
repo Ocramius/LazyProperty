@@ -27,13 +27,14 @@
         "doctrine/coding-standard": "^5.0"
     },
     "autoload": {
-        "psr-0": {
-            "LazyProperty\\": "src"
+        "psr-4": {
+            "LazyProperty\\": "src/LazyProperty"
         }
     },
     "autoload-dev": {
-        "psr-0": {
-            "LazyPropertyTestAsset\\": "tests"
+        "psr-4": {
+            "LazyPropertyTestAsset\\": "tests/LazyPropertyTestAsset",
+            "LazyPropertyTest\\": "tests/LazyPropertyTest"
         }
     },
     "extra": {
