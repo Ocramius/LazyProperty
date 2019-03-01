@@ -113,7 +113,7 @@ class LazyPropertiesTraitTest extends TestCase
     {
         $instance = new MixedPropertiesClass();
 
-        $this->expectException('LazyProperty\\Exception\\MissingLazyPropertyGetterException');
+        $this->expectException('LazyProperty\\Exception\\MissingLazyPropertyGetter');
         $instance->initProperties(['nonExisting']);
     }
 
@@ -137,7 +137,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance = new MixedPropertiesClass();
 
         $instance->initProperties(['protected1']);
-        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException('LazyProperty\\Exception\\InvalidAccess');
         $instance->protected1;
     }
 
@@ -146,7 +146,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance = new MixedPropertiesClass();
 
         $instance->initProperties(['private1']);
-        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException('LazyProperty\\Exception\\InvalidAccess');
         $instance->private1;
     }
 

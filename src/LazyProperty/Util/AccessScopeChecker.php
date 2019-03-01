@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LazyProperty\Util;
 
-use LazyProperty\Exception\InvalidAccessException;
+use LazyProperty\Exception\InvalidAccess;
 use ReflectionException;
 use ReflectionProperty;
 use function get_class;
@@ -20,9 +20,8 @@ class AccessScopeChecker
      *
      * @internal
      *
-     * @param array $caller the caller array as from the debug stack trace entry
+     * @param object[] $caller the caller array as from the debug stack trace entry
      *
-     * @throws InvalidAccessException
      * @throws ReflectionException
      *
      * @private
@@ -33,7 +32,7 @@ class AccessScopeChecker
 
         if (! $reflectionProperty->isPublic()) {
             if (! isset($caller['object'])) {
-                throw InvalidAccessException::invalidContext(null, $instance, $property);
+                throw InvalidAccess::invalidContext(null, $instance, $property);
             }
 
             $caller        = $caller['object'];
@@ -48,7 +47,7 @@ class AccessScopeChecker
                 return;
             }
 
-            throw InvalidAccessException::invalidContext($caller, $instance, $property);
+            throw InvalidAccess::invalidContext($caller, $instance, $property);
         }
     }
 }

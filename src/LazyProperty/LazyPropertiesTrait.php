@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace LazyProperty;
 
 use LazyProperty\Exception\InvalidLazyProperty;
-use LazyProperty\Exception\MissingLazyPropertyGetterException;
+use LazyProperty\Exception\MissingLazyPropertyGetter;
 use LazyProperty\Util\AccessScopeChecker;
 use ReflectionException;
 use const DEBUG_BACKTRACE_PROVIDE_OBJECT;
@@ -25,13 +25,13 @@ trait LazyPropertiesTrait
      *
      * @param string[] $lazyPropertyNames
      *
-     * @throws Exception\MissingLazyPropertyGetterException
+     * @throws MissingLazyPropertyGetter
      */
     private function initLazyProperties(array $lazyPropertyNames, bool $checkLazyGetters = true) : void
     {
         foreach ($lazyPropertyNames as $lazyProperty) {
             if ($checkLazyGetters && ! method_exists($this, 'get' . $lazyProperty)) {
-                throw MissingLazyPropertyGetterException::fromGetter($this, 'get' . $lazyProperty, $lazyProperty);
+                throw MissingLazyPropertyGetter::fromGetter($this, 'get' . $lazyProperty, $lazyProperty);
             }
 
             $this->lazyPropertyAccessors[$lazyProperty] = false;
@@ -49,7 +49,6 @@ trait LazyPropertiesTrait
      *
      * @return mixed
      *
-     * @throws InvalidLazyProperty if the requested lazy property does not exist
      * @throws ReflectionException
      */
     public function & __get(string $name)

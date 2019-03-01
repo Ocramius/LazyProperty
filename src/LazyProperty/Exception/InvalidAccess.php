@@ -14,7 +14,7 @@ use function sprintf;
 /**
  * Exception for invalid context access for lazy properties
  */
-class InvalidAccessException extends InvalidArgumentException implements ExceptionInterface
+class InvalidAccess extends InvalidArgumentException implements Exception
 {
     /**
      * @param mixed $caller

@@ -87,7 +87,7 @@ class AccessScopeCheckerTest extends TestCase
 
     public function testDisallowsAccessFromGlobalOrFunctionScope() : void
     {
-        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException('LazyProperty\\Exception\\InvalidAccess');
         AccessScopeChecker::checkCallerScope(
             [],
             new ParentClass(),
@@ -97,7 +97,7 @@ class AccessScopeCheckerTest extends TestCase
 
     public function testDisallowsPrivateAccessFromDifferentScope() : void
     {
-        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException('LazyProperty\\Exception\\InvalidAccess');
         AccessScopeChecker::checkCallerScope(
             ['object' => $this],
             new ParentClass(),
@@ -107,7 +107,7 @@ class AccessScopeCheckerTest extends TestCase
 
     public function testDisallowsProtectedAccessFromDifferentScope() : void
     {
-        $this->expectException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException('LazyProperty\\Exception\\InvalidAccess');
         AccessScopeChecker::checkCallerScope(
             ['object' => $this],
             new ParentClass(),

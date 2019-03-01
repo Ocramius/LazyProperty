@@ -13,6 +13,7 @@ class AClass
 {
     use LazyPropertiesTrait;
 
+    /** @var string */
     private $private;
 
     public function initALazyProperties() : void
@@ -20,8 +21,10 @@ class AClass
         $this->initLazyProperties(['private']);
     }
 
-    private function getPrivate()
+    // phpcs:disable SlevomatCodingStandard.Classes.UnusedPrivateElements
+    private function getPrivate() : string
     {
         return $this->private ?: $this->private = self::class;
     }
+    // phpcs:enable
 }

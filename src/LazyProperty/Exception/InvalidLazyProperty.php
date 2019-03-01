@@ -12,7 +12,7 @@ use function sprintf;
 /**
  * Exception for missing lazy properties
  */
-class InvalidLazyProperty extends LogicException implements ExceptionInterface
+class InvalidLazyProperty extends LogicException implements Exception
 {
     public static function nonExistingLazyProperty(object $instance, string $property) : self
     {

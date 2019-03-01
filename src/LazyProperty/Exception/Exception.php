@@ -7,6 +7,6 @@ namespace LazyProperty\Exception;
 /**
  * Base Exception for LazyProperty
  */
-interface ExceptionInterface
+interface Exception
 {
 }

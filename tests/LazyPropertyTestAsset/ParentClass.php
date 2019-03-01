@@ -9,18 +9,28 @@ namespace LazyPropertyTestAsset;
  */
 class ParentClass
 {
+    /** @var string */
     public $public1;
+    /** @var string */
     public $public2;
+    /** @var string */
     protected $protected1;
+    /** @var string */
     protected $protected2;
+
+    // phpcs:disable SlevomatCodingStandard.Classes.UnusedPrivateElements
+    /** @var string */
     private $private1;
+    /** @var string */
     private $private2;
+    // phpcs:enable
 
     public function getProperty(string $propertyName) : string
     {
         return $this->$propertyName;
     }
 
+    // phpcs:disable SlevomatCodingStandard.Classes.UnusedPrivateElements
     private function getPrivate1() : string
     {
         return $this->private1 = 'private1';
@@ -30,6 +40,7 @@ class ParentClass
     {
         return $this->private2 = 'private';
     }
+    // phpcs:enable
 
     protected function getProtected1() : string
     {

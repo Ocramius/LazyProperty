@@ -12,7 +12,7 @@ use function sprintf;
 /**
  * Exception for missing property getters
  */
-class MissingLazyPropertyGetterException extends InvalidArgumentException implements ExceptionInterface
+class MissingLazyPropertyGetter extends InvalidArgumentException implements Exception
 {
     public static function fromGetter(object $instance, string $getter, string $property) : self
     {
