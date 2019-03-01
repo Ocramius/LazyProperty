@@ -1,6 +1,5 @@
 # Contributing
 
- * Coding standard for the project is [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
  * The project will follow strict [object calisthenics](http://www.slideshare.net/guilhermeblanco/object-calisthenics-applied-to-php)
  * Any contribution must provide tests for additional introduced conditions
  * Any un-confirmed issue needs a failing test case before being accepted
@@ -33,3 +32,15 @@ $ ./vendor/bin/phpunit
 Accepted coverage for new contributions is 80%. Any contribution not satisfying this requirement 
 won't be merged.
 
+## Code Style
+
+The project follows the [Doctrine Coding Standard](https://github.com/doctrine/coding-standard). A configuration for php_codesniffer is shipped.
+Please execute the checker command and make sure you meet the requirements:
+
+```sh
+$ ./vendor/bin/phpcs
+```
+
+On Mac, you might need to add `--parallel=1` due to a known [bug](https://github.com/squizlabs/PHP_CodeSniffer/issues/2304).
+
+Disabling specific rules for parts of files where it's clearly a false positive is acceptable in some cases.
