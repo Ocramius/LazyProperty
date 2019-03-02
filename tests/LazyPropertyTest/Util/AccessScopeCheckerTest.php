@@ -9,7 +9,6 @@ use LazyPropertyTestAsset\InheritedPropertiesClass;
 use LazyPropertyTestAsset\ParentClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
-use Throwable;
 
 /**
  * Tests for {@see \LazyProperty\Util\AccessScopeChecker}
