@@ -21,9 +21,10 @@ class AccessScopeChecker
      * @internal
      *
      * @param object[] $caller the caller array as from the debug stack trace entry
+     * @param object $instance
+     * @param string $property
      *
      * @throws ReflectionException
-     *
      * @private
      */
     public static function checkCallerScope(array $caller, object $instance, string $property) : void

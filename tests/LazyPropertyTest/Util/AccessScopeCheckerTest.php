@@ -20,69 +20,54 @@ class AccessScopeCheckerTest extends TestCase
 {
     public function testAllowsAccessFromSameInstance() : void
     {
-        try {
-            AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'backupGlobals');
-        } catch (Throwable $exception) {
-            $this->fail('Unexpected exception.');
-        }
+        AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'backupGlobals');
 
-        $this->assertTrue(true);
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
     public function testAllowsAccessToPublicProperties() : void
     {
-        try {
-            AccessScopeChecker::checkCallerScope(['object' => $this], new ParentClass(), 'public1');
-        } catch (Throwable $exception) {
-            $this->fail('Unexpected exception.');
-        }
+        AccessScopeChecker::checkCallerScope(['object' => $this], new ParentClass(), 'public1');
 
-        $this->assertTrue(true);
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
     public function testAllowsAccessFromSubClass() : void
     {
-        try {
-            AccessScopeChecker::checkCallerScope(
-                ['object' => new InheritedPropertiesClass()],
-                new ParentClass(),
-                'protected1'
-            );
-        } catch (Throwable $exception) {
-            $this->fail('Unexpected exception.');
-        }
+        AccessScopeChecker::checkCallerScope(
+            ['object' => new InheritedPropertiesClass()],
+            new ParentClass(),
+            'protected1'
+        );
 
-        $this->assertTrue(true);
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
     public function testAllowsAccessFromSameClass() : void
     {
-        try {
-            AccessScopeChecker::checkCallerScope(
-                ['object' => new ParentClass()],
-                new ParentClass(),
-                'private1'
-            );
-        } catch (Throwable $exception) {
-            $this->fail('Unexpected exception.');
-        }
+        AccessScopeChecker::checkCallerScope(
+            ['object' => new ParentClass()],
+            new ParentClass(),
+            'private1'
+        );
 
-        $this->assertTrue(true);
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
     public function testAllowsAccessFromReflectionProperty() : void
     {
-        try {
-            AccessScopeChecker::checkCallerScope(
-                ['object' => new ReflectionProperty(new ParentClass(), 'private1')],
-                new ParentClass(),
-                'private1'
-            );
-        } catch (Throwable $exception) {
-            $this->fail('Unexpected exception.');
-        }
+        AccessScopeChecker::checkCallerScope(
+            ['object' => new ReflectionProperty(new ParentClass(), 'private1')],
+            new ParentClass(),
+            'private1'
+        );
 
-        $this->assertTrue(true);
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
     public function testDisallowsAccessFromGlobalOrFunctionScope() : void
