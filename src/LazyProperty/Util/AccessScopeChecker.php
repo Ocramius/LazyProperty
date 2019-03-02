@@ -41,8 +41,8 @@ class AccessScopeChecker
 
             if ($callerClass === $instanceClass
                 || ($reflectionProperty->isProtected() && is_subclass_of($callerClass, $instanceClass))
-                || $callerClass === 'ReflectionProperty'
-                || is_subclass_of($callerClass, 'ReflectionProperty')
+                || $callerClass === ReflectionProperty::class
+                || is_subclass_of($callerClass, ReflectionProperty::class)
             ) {
                 return;
             }

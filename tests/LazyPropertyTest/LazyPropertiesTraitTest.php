@@ -155,8 +155,8 @@ class LazyPropertiesTraitTest extends TestCase
         $instanceA = new AClass();
         $instanceB = new BClass();
 
-        $instanceA->initALazyProperties('private');
-        $instanceB->initBLazyProperties('private');
+        $instanceA->initALazyProperties();
+        $instanceB->initBLazyProperties();
 
         $this->assertSame('LazyPropertyTestAsset\AClass', $this->getProperty($instanceA, 'private'));
         $this->assertSame('LazyPropertyTestAsset\BClass', $this->getProperty($instanceB, 'private'));

@@ -12,3 +12,5 @@ before_script:
 script:
   - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
   - ./vendor/bin/phpcs
+  - ./vendor/bin/phpstan analyse --no-interaction --no-progress
+  - ./vendor/bin/psalm
