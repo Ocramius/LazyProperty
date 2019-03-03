@@ -2,7 +2,7 @@
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHP_CodeSniffer"
          xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
     <description>This project follows doctrine/coding-standard</description>
-    
+
     <file>src</file>
     <file>tests</file>
 
@@ -12,6 +12,8 @@
     <arg value="np"/>
 
     <!-- Use doctrine/coding-standard -->
-    <rule ref="Doctrine"/>
+    <rule ref="Doctrine">
+        <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
+    </rule>
 
 </ruleset>

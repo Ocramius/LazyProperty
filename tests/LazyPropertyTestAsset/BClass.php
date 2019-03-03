@@ -21,10 +21,8 @@ class BClass extends AClass
         $this->initLazyProperties(['private']);
     }
 
-    // phpcs:disable SlevomatCodingStandard.Classes.UnusedPrivateElements
     private function getPrivate() : string
     {
         return $this->private ?: $this->private = self::class;
     }
-    // phpcs:enable
 }
