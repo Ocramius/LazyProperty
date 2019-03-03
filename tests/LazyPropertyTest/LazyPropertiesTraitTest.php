@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace LazyPropertyTest;
 
+use LazyProperty\Exception\InvalidAccess;
+use LazyProperty\Exception\InvalidLazyProperty;
+use LazyProperty\Exception\MissingLazyPropertyGetter;
 use LazyPropertyTestAsset\AClass;
 use LazyPropertyTestAsset\BClass;
 use LazyPropertyTestAsset\InheritedPropertiesClass;
@@ -113,7 +116,7 @@ class LazyPropertiesTraitTest extends TestCase
     {
         $instance = new MixedPropertiesClass();
 
-        $this->expectException('LazyProperty\\Exception\\MissingLazyPropertyGetter');
+        $this->expectException(MissingLazyPropertyGetter::class);
         $instance->initProperties(['nonExisting']);
     }
 
@@ -128,7 +131,7 @@ class LazyPropertiesTraitTest extends TestCase
 
     public function testDeniesAccessToNonExistingLazyProperties() : void
     {
-        $this->expectException('LazyProperty\\Exception\\InvalidLazyProperty');
+        $this->expectException(InvalidLazyProperty::class);
         (new LazyGetterClass())->nonExisting;
     }
 
@@ -137,7 +140,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance = new MixedPropertiesClass();
 
         $instance->initProperties(['protected1']);
-        $this->expectException('LazyProperty\\Exception\\InvalidAccess');
+        $this->expectException(InvalidAccess::class);
         $instance->protected1;
     }
 
@@ -146,7 +149,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance = new MixedPropertiesClass();
 
         $instance->initProperties(['private1']);
-        $this->expectException('LazyProperty\\Exception\\InvalidAccess');
+        $this->expectException(InvalidAccess::class);
         $instance->private1;
     }
 
@@ -158,8 +161,8 @@ class LazyPropertiesTraitTest extends TestCase
         $instanceA->initALazyProperties();
         $instanceB->initBLazyProperties();
 
-        $this->assertSame('LazyPropertyTestAsset\AClass', $this->getProperty($instanceA, 'private'));
-        $this->assertSame('LazyPropertyTestAsset\BClass', $this->getProperty($instanceB, 'private'));
+        $this->assertSame(AClass::class, $this->getProperty($instanceA, 'private'));
+        $this->assertSame(BClass::class, $this->getProperty($instanceB, 'private'));
     }
 
     public function testDoesNotReInitializeDefinedProperties() : void
