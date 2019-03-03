@@ -1,96 +1,102 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license.
- */
+
+declare(strict_types=1);
 
 namespace LazyPropertyTest\Util;
 
+use LazyProperty\Exception\InvalidAccess;
 use LazyProperty\Util\AccessScopeChecker;
 use LazyPropertyTestAsset\InheritedPropertiesClass;
 use LazyPropertyTestAsset\ParentClass;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use ReflectionProperty;
 
 /**
  * Tests for {@see \LazyProperty\Util\AccessScopeChecker}
  *
- * @author Marco Pivetta <ocramius@gmail.com>
- *
  * @covers \LazyProperty\Util\AccessScopeChecker
  */
-class AccessScopeCheckerTest extends PHPUnit_Framework_TestCase
+class AccessScopeCheckerTest extends TestCase
 {
-    public function testAllowsAccessFromSameInstance()
+    public function testAllowsAccessFromSameInstance() : void
     {
-        $this->assertNull(AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'backupGlobals'));
+        AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'backupGlobals');
+
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
-    public function testAllowsAccessFromSubClass()
+    public function testAllowsAccessToPublicProperties() : void
     {
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
+        AccessScopeChecker::checkCallerScope(['object' => $this], new ParentClass(), 'public1');
+
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
+    }
+
+    public function testAllowsAccessFromSubClass() : void
+    {
+        AccessScopeChecker::checkCallerScope(
             ['object' => new InheritedPropertiesClass()],
             new ParentClass(),
             'protected1'
-        ));
+        );
+
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
-    public function testAllowsAccessFromSameClass()
+    public function testAllowsAccessFromSameClass() : void
     {
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
+        AccessScopeChecker::checkCallerScope(
             ['object' => new ParentClass()],
             new ParentClass(),
             'private1'
-        ));
+        );
+
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
-    public function testAllowsAccessFromReflectionProperty()
+    public function testAllowsAccessFromReflectionProperty() : void
     {
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
-            ['object' => new \ReflectionProperty(new ParentClass(), 'private1')],
+        AccessScopeChecker::checkCallerScope(
+            ['object' => new ReflectionProperty(new ParentClass(), 'private1')],
             new ParentClass(),
             'private1'
-        ));
+        );
+
+        // Add to assertion count manually since we were successful when no exception was thrown and we got here.
+        $this->addToAssertionCount(1);
     }
 
-    public function testDisallowsAccessFromGlobalOrFunctionScope()
+    public function testDisallowsAccessFromGlobalOrFunctionScope() : void
     {
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
+        $this->expectException(InvalidAccess::class);
+        AccessScopeChecker::checkCallerScope(
             [],
             new ParentClass(),
             'private1'
-        ));
+        );
     }
 
-    public function testDisallowsPrivateAccessFromDifferentScope()
+    public function testDisallowsPrivateAccessFromDifferentScope() : void
     {
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
+        $this->expectException(InvalidAccess::class);
+        AccessScopeChecker::checkCallerScope(
             ['object' => $this],
             new ParentClass(),
             'private1'
-        ));
+        );
     }
 
-    public function testDisallowsProtectedAccessFromDifferentScope()
+    public function testDisallowsProtectedAccessFromDifferentScope() : void
     {
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
-        $this->assertNull(AccessScopeChecker::checkCallerScope(
+        $this->expectException(InvalidAccess::class);
+        AccessScopeChecker::checkCallerScope(
             ['object' => $this],
             new ParentClass(),
             'private1'
-        ));
+        );
     }
 }

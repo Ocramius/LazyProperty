@@ -3,11 +3,7 @@ language: php
 sudo: false
 
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - hhvm
+  - 7.3
 
 before_script:
   - composer self-update
@@ -15,4 +11,7 @@ before_script:
 
 script:
   - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
-  - ./vendor/bin/phpcs --standard=PSR2 ./src/ ./tests/
+  - ./vendor/bin/phpcs
+  - ./vendor/bin/phpstan analyse --no-interaction --no-progress
+  - ./vendor/bin/psalm
+  - ./vendor/bin/infection

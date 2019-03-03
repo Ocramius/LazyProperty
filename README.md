@@ -2,6 +2,8 @@
 
 This small library aims at providing a very simple and efficient loading of lazy properties
 
+Currently maintained by [Niklas Schöllhorn](https://github.com/mrpixeldream), taken over 3rd March, 2019
+
 [![Build Status](https://travis-ci.org/Ocramius/LazyProperty.png?branch=master)](https://travis-ci.org/Ocramius/LazyProperty)
 [![Code Coverage](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/badges/coverage.png?s=e66a6e178d3bd3928562c2f87ded32321d00665e)](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/badges/quality-score.png?s=a9ba5b80c811ffd9fd552f160ca6a5ac7b959736)](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/)
@@ -108,3 +110,6 @@ amount of getter calls is going on in private/protected scope.
 There is some minor overhead in calling `SomeService#initLazyProperties()`, as well as in
 the first property access, but it should be negligible.
 
+
+
+[reference]: Niklas Schöllhorn

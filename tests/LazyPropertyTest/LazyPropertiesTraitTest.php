@@ -1,50 +1,38 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license.
- */
+
+declare(strict_types=1);
 
 namespace LazyPropertyTest;
 
+use LazyProperty\Exception\InvalidAccess;
+use LazyProperty\Exception\InvalidLazyProperty;
+use LazyProperty\Exception\MissingLazyPropertyGetter;
 use LazyPropertyTestAsset\AClass;
 use LazyPropertyTestAsset\BClass;
 use LazyPropertyTestAsset\InheritedPropertiesClass;
 use LazyPropertyTestAsset\LazyGetterClass;
 use LazyPropertyTestAsset\MixedPropertiesClass;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use ReflectionException;
+use UnexpectedValueException;
 
 /**
  * Tests for {@see \LazyProperty\LazyPropertiesTrait}
  *
- * @author Marco Pivetta <ocramius@gmail.com>
- *
  * @covers \LazyProperty\LazyPropertiesTrait
  */
-class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
+class LazyPropertiesTraitTest extends TestCase
 {
-    /**
-     * @var MixedPropertiesClass
-     */
+    /** @var MixedPropertiesClass */
     protected $instance;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->instance = new MixedPropertiesClass();
     }
 
-    public function testMixedLazyPropertiesAreLazilyInitialized()
+    public function testMixedLazyPropertiesAreLazilyInitialized() : void
     {
         $instance = new MixedPropertiesClass();
 
@@ -65,7 +53,7 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->getProperty($instance, 'private2'));
     }
 
-    public function testAllMixedLazyPropertiesAreLazilyInitialized()
+    public function testAllMixedLazyPropertiesAreLazilyInitialized() : void
     {
         $instance = new MixedPropertiesClass();
 
@@ -86,7 +74,7 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame('private2', $this->getProperty($instance, 'private2'));
     }
 
-    public function testMixedLazyPropertiesAreLazilyInitializedWithProtectedAccess()
+    public function testMixedLazyPropertiesAreLazilyInitializedWithProtectedAccess() : void
     {
         $instance = new MixedPropertiesClass();
 
@@ -107,7 +95,7 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertNull($instance->getProperty('private2'));
     }
 
-    public function testMixedInheritedLazyPropertiesAreLazilyInitialized()
+    public function testMixedInheritedLazyPropertiesAreLazilyInitialized() : void
     {
         $instance = new InheritedPropertiesClass();
 
@@ -124,15 +112,15 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->getProperty($instance, 'protected2'));
     }
 
-    public function testThrowsExceptionOnMissingLazyGetter()
+    public function testThrowsExceptionOnMissingLazyGetter() : void
     {
         $instance = new MixedPropertiesClass();
 
-        $this->setExpectedException('LazyProperty\\Exception\\MissingLazyPropertyGetterException');
+        $this->expectException(MissingLazyPropertyGetter::class);
         $instance->initProperties(['nonExisting']);
     }
 
-    public function testDoesNotRaiseWarningsForNonExistingProperties()
+    public function testDoesNotRaiseWarningsForNonExistingProperties() : void
     {
         $instance = new LazyGetterClass();
 
@@ -141,43 +129,43 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame('property', $instance->getProperty());
     }
 
-    public function testDeniesAccessToNonExistingLazyProperties()
+    public function testDeniesAccessToNonExistingLazyProperties() : void
     {
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidLazyProperty');
+        $this->expectException(InvalidLazyProperty::class);
         (new LazyGetterClass())->nonExisting;
     }
 
-    public function testDeniesAccessToProtectedLazyProperties()
+    public function testDeniesAccessToProtectedLazyProperties() : void
     {
         $instance = new MixedPropertiesClass();
 
         $instance->initProperties(['protected1']);
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException(InvalidAccess::class);
         $instance->protected1;
     }
 
-    public function testDeniesAccessToPrivateLazyProperties()
+    public function testDeniesAccessToPrivateLazyProperties() : void
     {
         $instance = new MixedPropertiesClass();
 
         $instance->initProperties(['private1']);
-        $this->setExpectedException('LazyProperty\\Exception\\InvalidAccessException');
+        $this->expectException(InvalidAccess::class);
         $instance->private1;
     }
 
-    public function testGetMultiInheritanceProperties()
+    public function testGetMultiInheritanceProperties() : void
     {
         $instanceA = new AClass();
         $instanceB = new BClass();
 
-        $instanceA->initALazyProperties('private');
-        $instanceB->initBLazyProperties('private');
+        $instanceA->initALazyProperties();
+        $instanceB->initBLazyProperties();
 
-        $this->assertSame('LazyPropertyTestAsset\AClass', $this->getProperty($instanceA, 'private'));
-        $this->assertSame('LazyPropertyTestAsset\BClass', $this->getProperty($instanceB, 'private'));
+        $this->assertSame(AClass::class, $this->getProperty($instanceA, 'private'));
+        $this->assertSame(BClass::class, $this->getProperty($instanceB, 'private'));
     }
 
-    public function testDoesNotReInitializeDefinedProperties()
+    public function testDoesNotReInitializeDefinedProperties() : void
     {
         $instance = new MixedPropertiesClass();
 
@@ -189,18 +177,20 @@ class LazyPropertiesTraitTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $propertyName
+     * @return mixed
+     *
+     * @throws ReflectionException
      */
-    private function getProperty($instance, $propertyName)
+    private function getProperty(object $instance, string $propertyName)
     {
-        $reflectionClass = new \ReflectionClass($instance);
+        $reflectionClass = new ReflectionClass($instance);
 
         while ($reflectionClass && ! $reflectionClass->hasProperty($propertyName)) {
             $reflectionClass = $reflectionClass->getParentClass();
         }
 
         if (! $reflectionClass) {
-            throw new \UnexpectedValueException('Property "' . $propertyName . '" does not exist');
+            throw new UnexpectedValueException('Property "' . $propertyName . '" does not exist');
         }
 
         $reflectionProperty = $reflectionClass->getProperty($propertyName);
