@@ -16,7 +16,7 @@ Currently maintained by [Niklas Schöllhorn](https://github.com/mrpixeldream), t
 The suggested installation method is via [composer](https://getcomposer.org/):
 
 ```sh
-php composer.phar require ocramius/lazy-property:1.0.*
+composer require ocramius/lazy-property
 ```
 
 ## Use case
