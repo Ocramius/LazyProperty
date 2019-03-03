@@ -4,8 +4,7 @@
   "type": "library",
   "license": "MIT",
   "homepage": "https://github.com/Ocramius/LazyProperty",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
+  "minimum-stability": "stable",
   "keywords": [
     "lazy",
     "lazy loading",
