@@ -5,6 +5,9 @@ sudo: false
 php:
   - 7.3
 
+before_install:
+  - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+
 before_script:
   - composer self-update
   - composer update --prefer-source
@@ -15,3 +18,4 @@ script:
   - ./vendor/bin/phpstan analyse --no-interaction --no-progress
   - ./vendor/bin/psalm
   - ./vendor/bin/infection
+  - ./vendor/bin/roave-backward-compatibility-check
