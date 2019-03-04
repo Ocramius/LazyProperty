@@ -15,4 +15,3 @@ script:
   - ./vendor/bin/phpstan analyse --no-interaction --no-progress
   - ./vendor/bin/psalm
   - ./vendor/bin/infection
-  - ./vendor/bin/roave-backward-compatibility-check --from=1.0.1
