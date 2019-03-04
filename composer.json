@@ -32,7 +32,8 @@
         "doctrine/coding-standard": "^5.0",
         "phpstan/phpstan": "^0.11.2",
         "vimeo/psalm": "^3.1",
-        "infection/infection": "^0.12.2"
+        "infection/infection": "^0.12.2",
+        "roave/backward-compatibility-check": "^2.1"
     },
     "autoload": {
         "psr-4": {
