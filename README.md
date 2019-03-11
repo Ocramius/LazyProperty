@@ -2,7 +2,7 @@
 
 This small library aims at providing a very simple and efficient loading of lazy properties
 
-Currently maintained by [Niklas Schöllhorn](https://github.com/mrpixeldream), taken over 3rd March, 2019
+Currently maintained by [Niklas Schöllhorn](https://github.com/nschoellhorn), taken over 3rd March, 2019
 
 [![Build Status](https://travis-ci.org/Ocramius/LazyProperty.png?branch=master)](https://travis-ci.org/Ocramius/LazyProperty)
 [![Code Coverage](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/badges/coverage.png?s=e66a6e178d3bd3928562c2f87ded32321d00665e)](https://scrutinizer-ci.com/g/Ocramius/LazyProperty/)
