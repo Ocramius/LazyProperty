@@ -32,7 +32,7 @@
         "doctrine/coding-standard": "^5.0",
         "phpstan/phpstan": "^0.11.19",
         "vimeo/psalm": "^3.7",
-        "infection/infection": "^0.14.2",
+        "infection/infection": "^0.15.0",
         "roave/backward-compatibility-check": "^4.2"
     },
     "autoload": {
