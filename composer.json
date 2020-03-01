@@ -33,7 +33,7 @@
         "phpstan/phpstan": "^0.11.19",
         "vimeo/psalm": "^3.7",
         "infection/infection": "^0.15.0",
-        "roave/backward-compatibility-check": "^4.2"
+        "roave/backward-compatibility-check": "^4.4"
     },
     "autoload": {
         "psr-4": {
