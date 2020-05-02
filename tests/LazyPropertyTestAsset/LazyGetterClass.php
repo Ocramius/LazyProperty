@@ -13,7 +13,7 @@ class LazyGetterClass
 {
     use HasLazyProperties;
 
-    public string $property;
+    public ?string $property = null;
 
     /**
      * @param string[] $properties
