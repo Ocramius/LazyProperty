@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace LazyPropertyTestAsset;
 
-use LazyProperty\LazyPropertiesTrait;
+use LazyProperty\HasLazyProperties;
 
 /**
  * Test asset with lazy getters
  */
 class LazyGetterClass
 {
-    use LazyPropertiesTrait;
+    use HasLazyProperties;
 
-    /** @var string */
-    public $property;
+    public string $property;
 
     /**
      * @param string[] $properties

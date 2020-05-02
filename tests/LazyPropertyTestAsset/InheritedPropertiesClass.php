@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace LazyPropertyTestAsset;
 
-use LazyProperty\LazyPropertiesTrait;
+use LazyProperty\HasLazyProperties;
 
 /**
  * Mixed properties
  */
 class InheritedPropertiesClass extends ParentClass
 {
-    use LazyPropertiesTrait;
+    use HasLazyProperties;
 
     /**
      * @param string[] $properties

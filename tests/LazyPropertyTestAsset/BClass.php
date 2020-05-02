@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace LazyPropertyTestAsset;
 
-use LazyProperty\LazyPropertiesTrait;
+use LazyProperty\HasLazyProperties;
 
 /**
  * Mixed properties
  */
 class BClass extends AClass
 {
-    use LazyPropertiesTrait;
+    use HasLazyProperties;
 
-    /** @var string */
-    private $private;
+    private string $private;
 
     public function initBLazyProperties() : void
     {

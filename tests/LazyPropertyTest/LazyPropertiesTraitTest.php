@@ -18,14 +18,13 @@ use ReflectionException;
 use UnexpectedValueException;
 
 /**
- * Tests for {@see \LazyProperty\LazyPropertiesTrait}
+ * Tests for {@see \LazyProperty\HasLazyProperties}
  *
- * @covers \LazyProperty\LazyPropertiesTrait
+ * @covers \LazyProperty\HasLazyProperties
  */
 class LazyPropertiesTraitTest extends TestCase
 {
-    /** @var MixedPropertiesClass */
-    protected $instance;
+    protected MixedPropertiesClass $instance;
 
     public function setUp() : void
     {

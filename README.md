@@ -64,7 +64,7 @@ its protected `$dependency` property may just use `LazyProperty\LazyPropertiesTr
 ```php
 class SomeService
 {
-    use \LazyProperty\LazyPropertiesTrait;
+    use \LazyProperty\HasLazyProperties;
 
     protected $dependency;
 

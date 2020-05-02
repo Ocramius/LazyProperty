@@ -9,18 +9,12 @@ namespace LazyPropertyTestAsset;
  */
 class ParentClass
 {
-    /** @var string */
-    public $public1;
-    /** @var string */
-    public $public2;
-    /** @var string */
-    protected $protected1;
-    /** @var string */
-    protected $protected2;
-    /** @var string */
-    private $private1;
-    /** @var string */
-    private $private2;
+    public string $public1;
+    public string $public2;
+    protected string $protected1;
+    protected string $protected2;
+    private string $private1;
+    private string $private2;
 
     public function getProperty(string $propertyName) : string
     {
