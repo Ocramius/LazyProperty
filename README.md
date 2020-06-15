@@ -109,7 +109,3 @@ Using `LazyProperty\LazyPropertiesTrait` allows to speed up applications where a
 amount of getter calls is going on in private/protected scope.
 There is some minor overhead in calling `SomeService#initLazyProperties()`, as well as in
 the first property access, but it should be negligible.
-
-
-
-[reference]: Niklas Schöllhorn
