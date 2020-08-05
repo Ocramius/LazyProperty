@@ -34,7 +34,7 @@
         "vimeo/psalm": "^3.12",
         "infection/infection": "^0.15.2",
         "roave/backward-compatibility-check": "^4.4",
-        "phpstan/phpstan-strict-rules": "^0.12.2"
+        "phpstan/phpstan-strict-rules": "^0.12.3"
     },
     "autoload": {
         "psr-4": {
