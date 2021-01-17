@@ -15,7 +15,7 @@ use stdClass;
  */
 class InvalidLazyPropertyTest extends TestCase
 {
-    public function testInvalidContext() : void
+    public function testInvalidContext(): void
     {
         $this->assertStringMatchesFormat(
             'The requested lazy property "foo" is not defined in "stdClass#%s"',

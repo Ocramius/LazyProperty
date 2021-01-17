@@ -15,7 +15,7 @@ use stdClass;
  */
 class InvalidAccessTest extends TestCase
 {
-    public function testInvalidContext() : void
+    public function testInvalidContext(): void
     {
         $this->assertStringMatchesFormat(
             'The requested lazy property "foo" of "stdClass#%s" is not accessible from the context of in "'

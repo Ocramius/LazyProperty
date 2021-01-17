@@ -8,9 +8,11 @@ use LazyProperty\Exception\InvalidLazyProperty;
 use LazyProperty\Exception\MissingLazyPropertyGetter;
 use LazyProperty\Util\AccessScopeChecker;
 use ReflectionException;
-use const DEBUG_BACKTRACE_PROVIDE_OBJECT;
+
 use function debug_backtrace;
 use function method_exists;
+
+use const DEBUG_BACKTRACE_PROVIDE_OBJECT;
 
 /**
  * Trait providing lazy initialization of object properties
@@ -18,7 +20,7 @@ use function method_exists;
 trait LazyPropertiesTrait
 {
     /** @var bool[] indexed by property name */
-    private $lazyPropertyAccessors = [];
+    private array $lazyPropertyAccessors = [];
 
     /**
      * Initializes lazy properties so that first access causes their initialization via a getter
@@ -27,7 +29,7 @@ trait LazyPropertiesTrait
      *
      * @throws MissingLazyPropertyGetter
      */
-    private function initLazyProperties(array $lazyPropertyNames, bool $checkLazyGetters = true) : void
+    private function initLazyProperties(array $lazyPropertyNames, bool $checkLazyGetters = true): void
     {
         foreach ($lazyPropertyNames as $lazyProperty) {
             if ($checkLazyGetters && ! method_exists($this, 'get' . $lazyProperty)) {

@@ -24,15 +24,14 @@ use UnexpectedValueException;
  */
 class LazyPropertiesTraitTest extends TestCase
 {
-    /** @var MixedPropertiesClass */
-    protected $instance;
+    protected MixedPropertiesClass $instance;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->instance = new MixedPropertiesClass();
     }
 
-    public function testMixedLazyPropertiesAreLazilyInitialized() : void
+    public function testMixedLazyPropertiesAreLazilyInitialized(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -53,7 +52,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertNull($this->getProperty($instance, 'private2'));
     }
 
-    public function testAllMixedLazyPropertiesAreLazilyInitialized() : void
+    public function testAllMixedLazyPropertiesAreLazilyInitialized(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -74,7 +73,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertSame('private2', $this->getProperty($instance, 'private2'));
     }
 
-    public function testMixedLazyPropertiesAreLazilyInitializedWithProtectedAccess() : void
+    public function testMixedLazyPropertiesAreLazilyInitializedWithProtectedAccess(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -95,7 +94,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertNull($instance->getProperty('private2'));
     }
 
-    public function testMixedInheritedLazyPropertiesAreLazilyInitialized() : void
+    public function testMixedInheritedLazyPropertiesAreLazilyInitialized(): void
     {
         $instance = new InheritedPropertiesClass();
 
@@ -112,7 +111,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertNull($this->getProperty($instance, 'protected2'));
     }
 
-    public function testThrowsExceptionOnMissingLazyGetter() : void
+    public function testThrowsExceptionOnMissingLazyGetter(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -120,7 +119,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance->initProperties(['nonExisting']);
     }
 
-    public function testDoesNotRaiseWarningsForNonExistingProperties() : void
+    public function testDoesNotRaiseWarningsForNonExistingProperties(): void
     {
         $instance = new LazyGetterClass();
 
@@ -129,13 +128,13 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertSame('property', $instance->getProperty());
     }
 
-    public function testDeniesAccessToNonExistingLazyProperties() : void
+    public function testDeniesAccessToNonExistingLazyProperties(): void
     {
         $this->expectException(InvalidLazyProperty::class);
         (new LazyGetterClass())->nonExisting;
     }
 
-    public function testDeniesAccessToProtectedLazyProperties() : void
+    public function testDeniesAccessToProtectedLazyProperties(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -144,7 +143,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance->protected1;
     }
 
-    public function testDeniesAccessToPrivateLazyProperties() : void
+    public function testDeniesAccessToPrivateLazyProperties(): void
     {
         $instance = new MixedPropertiesClass();
 
@@ -153,7 +152,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance->private1;
     }
 
-    public function testGetMultiInheritanceProperties() : void
+    public function testGetMultiInheritanceProperties(): void
     {
         $instanceA = new AClass();
         $instanceB = new BClass();
@@ -165,7 +164,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertSame(BClass::class, $this->getProperty($instanceB, 'private'));
     }
 
-    public function testDoesNotReInitializeDefinedProperties() : void
+    public function testDoesNotReInitializeDefinedProperties(): void
     {
         $instance = new MixedPropertiesClass();
 

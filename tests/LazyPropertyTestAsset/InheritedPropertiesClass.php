@@ -16,7 +16,7 @@ class InheritedPropertiesClass extends ParentClass
     /**
      * @param string[] $properties
      */
-    public function initProperties(array $properties) : void
+    public function initProperties(array $properties): void
     {
         $this->initLazyProperties($properties);
     }

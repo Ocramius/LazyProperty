@@ -13,18 +13,17 @@ class LazyGetterClass
 {
     use LazyPropertiesTrait;
 
-    /** @var string */
-    public $property;
+    public ?string $property;
 
     /**
      * @param string[] $properties
      */
-    public function initProperties(array $properties) : void
+    public function initProperties(array $properties): void
     {
         $this->initLazyProperties($properties);
     }
 
-    public function getProperty() : string
+    public function getProperty(): string
     {
         if ($this->property === null) {
             return $this->property = 'property';
