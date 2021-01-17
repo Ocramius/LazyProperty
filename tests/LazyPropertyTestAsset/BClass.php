@@ -13,7 +13,7 @@ class BClass extends AClass
 {
     use LazyPropertiesTrait;
 
-    private string $private;
+    private ?string $private;
 
     public function initBLazyProperties(): void
     {

@@ -13,7 +13,7 @@ class AClass
 {
     use LazyPropertiesTrait;
 
-    private string $private;
+    private ?string $private;
 
     public function initALazyProperties(): void
     {

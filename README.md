@@ -62,7 +62,7 @@ class SomeService
 {
     use \LazyProperty\LazyPropertiesTrait;
 
-    protected $dependency;
+    protected MyDependency $dependency;
 
     public function __construct()
     {
