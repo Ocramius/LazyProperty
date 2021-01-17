@@ -18,7 +18,7 @@ use ReflectionProperty;
  */
 class AccessScopeCheckerTest extends TestCase
 {
-    public function testAllowsAccessFromSameInstance() : void
+    public function testAllowsAccessFromSameInstance(): void
     {
         AccessScopeChecker::checkCallerScope(['object' => $this], $this, 'backupGlobals');
 
@@ -26,7 +26,7 @@ class AccessScopeCheckerTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    public function testAllowsAccessToPublicProperties() : void
+    public function testAllowsAccessToPublicProperties(): void
     {
         AccessScopeChecker::checkCallerScope(['object' => $this], new ParentClass(), 'public1');
 
@@ -34,7 +34,7 @@ class AccessScopeCheckerTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    public function testAllowsAccessFromSubClass() : void
+    public function testAllowsAccessFromSubClass(): void
     {
         AccessScopeChecker::checkCallerScope(
             ['object' => new InheritedPropertiesClass()],
@@ -46,7 +46,7 @@ class AccessScopeCheckerTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    public function testAllowsAccessFromSameClass() : void
+    public function testAllowsAccessFromSameClass(): void
     {
         AccessScopeChecker::checkCallerScope(
             ['object' => new ParentClass()],
@@ -58,7 +58,7 @@ class AccessScopeCheckerTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    public function testAllowsAccessFromReflectionProperty() : void
+    public function testAllowsAccessFromReflectionProperty(): void
     {
         AccessScopeChecker::checkCallerScope(
             ['object' => new ReflectionProperty(new ParentClass(), 'private1')],
@@ -70,7 +70,7 @@ class AccessScopeCheckerTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    public function testDisallowsAccessFromGlobalOrFunctionScope() : void
+    public function testDisallowsAccessFromGlobalOrFunctionScope(): void
     {
         $this->expectException(InvalidAccess::class);
         AccessScopeChecker::checkCallerScope(
@@ -80,7 +80,7 @@ class AccessScopeCheckerTest extends TestCase
         );
     }
 
-    public function testDisallowsPrivateAccessFromDifferentScope() : void
+    public function testDisallowsPrivateAccessFromDifferentScope(): void
     {
         $this->expectException(InvalidAccess::class);
         AccessScopeChecker::checkCallerScope(
@@ -90,7 +90,7 @@ class AccessScopeCheckerTest extends TestCase
         );
     }
 
-    public function testDisallowsProtectedAccessFromDifferentScope() : void
+    public function testDisallowsProtectedAccessFromDifferentScope(): void
     {
         $this->expectException(InvalidAccess::class);
         AccessScopeChecker::checkCallerScope(

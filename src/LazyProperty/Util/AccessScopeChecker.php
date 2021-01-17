@@ -7,6 +7,7 @@ namespace LazyProperty\Util;
 use LazyProperty\Exception\InvalidAccess;
 use ReflectionException;
 use ReflectionProperty;
+
 use function get_class;
 use function is_subclass_of;
 
@@ -26,7 +27,7 @@ class AccessScopeChecker
      *
      * @private
      */
-    public static function checkCallerScope(array $caller, object $instance, string $property) : void
+    public static function checkCallerScope(array $caller, object $instance, string $property): void
     {
         $reflectionProperty = new ReflectionProperty($instance, $property);
 
@@ -39,7 +40,8 @@ class AccessScopeChecker
             $callerClass   = get_class($caller);
             $instanceClass = get_class($instance);
 
-            if ($callerClass === $instanceClass
+            if (
+                $callerClass === $instanceClass
                 || ($reflectionProperty->isProtected() && is_subclass_of($callerClass, $instanceClass))
                 || $callerClass === ReflectionProperty::class
                 || is_subclass_of($callerClass, ReflectionProperty::class)

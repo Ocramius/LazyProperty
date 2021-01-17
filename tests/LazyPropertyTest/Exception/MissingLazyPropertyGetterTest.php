@@ -15,7 +15,7 @@ use stdClass;
  */
 class MissingLazyPropertyGetterTest extends TestCase
 {
-    public function testInvalidContext() : void
+    public function testInvalidContext(): void
     {
         $this->assertStringMatchesFormat(
             'The getter "getFoo" for lazy property "foo" is not defined in "stdClass#%s"',
