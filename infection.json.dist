@@ -1,14 +1,15 @@
 {
-    "timeout": 10,
     "source": {
         "directories": [
             "src"
         ]
     },
     "logs": {
-        "text": "infection-log.txt"
+        "text": "php://stderr",
+        "badge": {
+            "branch": "master"
+        }
     },
-    "phpUnit": {
-        "configDir": "."
-    }
+    "minMsi": 87,
+    "minCoveredMsi": 87
 }

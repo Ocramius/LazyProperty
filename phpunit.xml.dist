@@ -7,9 +7,9 @@
     <testsuite name="LazyProperty tests">
         <directory>./tests/LazyPropertyTest</directory>
     </testsuite>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
+    <coverage>
+        <include>
+            <directory>./src</directory>
+        </include>
+    </coverage>
 </phpunit>

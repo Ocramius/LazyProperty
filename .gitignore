@@ -1,5 +1,4 @@
 vendor
-composer.phar
 phpunit.xml
 .phpunit.result.cache
 phpmd.xml
