@@ -13,12 +13,12 @@ class MixedPropertiesClass
 {
     use LazyPropertiesTrait;
 
-    public ?string $public1 = null;
-    public ?string $public2 = null;
+    public ?string $public1       = null;
+    public ?string $public2       = null;
     protected ?string $protected1 = null;
     protected ?string $protected2 = null;
-    private ?string $private1 = null;
-    private ?string $private2 = null;
+    private ?string $private1     = null;
+    private ?string $private2     = null;
 
     public function getProperty(string $propertyName): ?string
     {
