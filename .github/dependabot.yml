@@ -1,0 +1,18 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "04:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - nschoellhorn
+  assignees:
+  - nschoellhorn
+  versioning-strategy: increase
+  ignore:
+  - dependency-name: infection/infection
+    versions:
+    - 0.21.0
+    - 0.21.2
