@@ -176,11 +176,9 @@ class LazyPropertiesTraitTest extends TestCase
     }
 
     /**
-     * @return mixed
-     *
      * @throws ReflectionException
      */
-    private function getProperty(object $instance, string $propertyName)
+    private function getProperty(object $instance, string $propertyName): mixed
     {
         $reflectionClass = new ReflectionClass($instance);
 

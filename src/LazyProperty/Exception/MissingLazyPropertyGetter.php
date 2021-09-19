@@ -6,7 +6,6 @@ namespace LazyProperty\Exception;
 
 use InvalidArgumentException;
 
-use function get_class;
 use function spl_object_hash;
 use function sprintf;
 
@@ -21,7 +20,7 @@ class MissingLazyPropertyGetter extends InvalidArgumentException implements Exce
             'The getter "%s" for lazy property "%s" is not defined in "%s#%s"',
             $getter,
             $property,
-            get_class($instance),
+            $instance::class,
             spl_object_hash($instance)
         ));
     }
