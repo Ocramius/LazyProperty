@@ -8,7 +8,6 @@ use LazyProperty\Exception\InvalidAccess;
 use ReflectionException;
 use ReflectionProperty;
 
-use function get_class;
 use function is_subclass_of;
 
 /**
@@ -37,8 +36,8 @@ class AccessScopeChecker
             }
 
             $caller        = $caller['object'];
-            $callerClass   = get_class($caller);
-            $instanceClass = get_class($instance);
+            $callerClass   = $caller::class;
+            $instanceClass = $instance::class;
 
             if (
                 $callerClass === $instanceClass

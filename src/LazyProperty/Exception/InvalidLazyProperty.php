@@ -6,7 +6,6 @@ namespace LazyProperty\Exception;
 
 use LogicException;
 
-use function get_class;
 use function spl_object_hash;
 use function sprintf;
 
@@ -20,7 +19,7 @@ class InvalidLazyProperty extends LogicException implements Exception
         return new self(sprintf(
             'The requested lazy property "%s" is not defined in "%s#%s"',
             $property,
-            get_class($instance),
+            $instance::class,
             spl_object_hash($instance)
         ));
     }

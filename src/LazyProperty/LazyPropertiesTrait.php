@@ -49,11 +49,9 @@ trait LazyPropertiesTrait
     /**
      * Magic getter - initializes and gets a property
      *
-     * @return mixed
-     *
      * @throws ReflectionException
      */
-    public function & __get(string $name)
+    public function & __get(string $name): mixed
     {
         if (! isset($this->lazyPropertyAccessors[$name])) {
             throw InvalidLazyProperty::nonExistingLazyProperty($this, $name);
