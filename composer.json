@@ -27,10 +27,10 @@
         "php": "~8.0.0 || ~8.1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5.10",
+        "phpunit/phpunit": "^9.5.26",
         "doctrine/coding-standard": "^10.0.0",
-        "vimeo/psalm": "^4.10.0",
-        "roave/infection-static-analysis-plugin": "^1.10.0"
+        "vimeo/psalm": "^4.29.0",
+        "roave/infection-static-analysis-plugin": "^1.25.0"
     },
     "autoload": {
         "psr-4": {
