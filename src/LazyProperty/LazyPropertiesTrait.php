@@ -19,7 +19,7 @@ use const DEBUG_BACKTRACE_PROVIDE_OBJECT;
  */
 trait LazyPropertiesTrait
 {
-    /** @var bool[] indexed by property name */
+    /** @var array<string, false> indexed by property name */
     private array $lazyPropertyAccessors = [];
 
     /**

@@ -116,6 +116,7 @@ class LazyPropertiesTraitTest extends TestCase
         $instance = new MixedPropertiesClass();
 
         $this->expectException(MissingLazyPropertyGetter::class);
+        $this->expectExceptionMessage('The getter "getnonExisting" for lazy property "nonExisting" is not defined');
         $instance->initProperties(['nonExisting']);
     }
 
