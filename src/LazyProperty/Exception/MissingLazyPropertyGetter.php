@@ -21,7 +21,7 @@ class MissingLazyPropertyGetter extends InvalidArgumentException implements Exce
             $getter,
             $property,
             $instance::class,
-            spl_object_hash($instance)
+            spl_object_hash($instance),
         ));
     }
 }

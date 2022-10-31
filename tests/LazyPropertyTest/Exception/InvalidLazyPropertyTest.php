@@ -19,7 +19,7 @@ class InvalidLazyPropertyTest extends TestCase
     {
         $this->assertStringMatchesFormat(
             'The requested lazy property "foo" is not defined in "stdClass#%s"',
-            InvalidLazyProperty::nonExistingLazyProperty(new stdClass(), 'foo')->getMessage()
+            InvalidLazyProperty::nonExistingLazyProperty(new stdClass(), 'foo')->getMessage(),
         );
     }
 }

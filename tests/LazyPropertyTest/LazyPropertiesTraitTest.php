@@ -176,9 +176,7 @@ class LazyPropertiesTraitTest extends TestCase
         $this->assertSame('defined', $instance->public1);
     }
 
-    /**
-     * @throws ReflectionException
-     */
+    /** @throws ReflectionException */
     private function getProperty(object $instance, string $propertyName): mixed
     {
         $reflectionClass = new ReflectionClass($instance);
