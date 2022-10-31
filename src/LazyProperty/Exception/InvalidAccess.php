@@ -23,7 +23,7 @@ class InvalidAccess extends InvalidArgumentException implements Exception
             $property,
             $instance::class,
             spl_object_hash($instance),
-            is_object($caller) ? $caller::class : gettype($caller)
+            is_object($caller) ? $caller::class : gettype($caller),
         ));
     }
 }

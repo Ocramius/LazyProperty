@@ -20,7 +20,7 @@ class InvalidAccessTest extends TestCase
         $this->assertStringMatchesFormat(
             'The requested lazy property "foo" of "stdClass#%s" is not accessible from the context of in "'
             . self::class . '"',
-            InvalidAccess::invalidContext($this, new stdClass(), 'foo')->getMessage()
+            InvalidAccess::invalidContext($this, new stdClass(), 'foo')->getMessage(),
         );
     }
 }

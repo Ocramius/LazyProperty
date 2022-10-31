@@ -20,7 +20,7 @@ class InvalidLazyProperty extends LogicException implements Exception
             'The requested lazy property "%s" is not defined in "%s#%s"',
             $property,
             $instance::class,
-            spl_object_hash($instance)
+            spl_object_hash($instance),
         ));
     }
 }

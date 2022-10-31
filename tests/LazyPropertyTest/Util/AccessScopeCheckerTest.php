@@ -39,7 +39,7 @@ class AccessScopeCheckerTest extends TestCase
         AccessScopeChecker::checkCallerScope(
             ['object' => new InheritedPropertiesClass()],
             new ParentClass(),
-            'protected1'
+            'protected1',
         );
 
         // Add to assertion count manually since we were successful when no exception was thrown and we got here.
@@ -51,7 +51,7 @@ class AccessScopeCheckerTest extends TestCase
         AccessScopeChecker::checkCallerScope(
             ['object' => new ParentClass()],
             new ParentClass(),
-            'private1'
+            'private1',
         );
 
         // Add to assertion count manually since we were successful when no exception was thrown and we got here.
@@ -63,7 +63,7 @@ class AccessScopeCheckerTest extends TestCase
         AccessScopeChecker::checkCallerScope(
             ['object' => new ReflectionProperty(new ParentClass(), 'private1')],
             new ParentClass(),
-            'private1'
+            'private1',
         );
 
         // Add to assertion count manually since we were successful when no exception was thrown and we got here.
@@ -76,7 +76,7 @@ class AccessScopeCheckerTest extends TestCase
         AccessScopeChecker::checkCallerScope(
             [],
             new ParentClass(),
-            'private1'
+            'private1',
         );
     }
 
@@ -86,7 +86,7 @@ class AccessScopeCheckerTest extends TestCase
         AccessScopeChecker::checkCallerScope(
             ['object' => $this],
             new ParentClass(),
-            'private1'
+            'private1',
         );
     }
 
@@ -96,7 +96,7 @@ class AccessScopeCheckerTest extends TestCase
         AccessScopeChecker::checkCallerScope(
             ['object' => $this],
             new ParentClass(),
-            'private1'
+            'private1',
         );
     }
 }

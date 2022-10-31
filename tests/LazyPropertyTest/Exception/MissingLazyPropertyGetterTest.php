@@ -19,7 +19,7 @@ class MissingLazyPropertyGetterTest extends TestCase
     {
         $this->assertStringMatchesFormat(
             'The getter "getFoo" for lazy property "foo" is not defined in "stdClass#%s"',
-            MissingLazyPropertyGetter::fromGetter(new stdClass(), 'getFoo', 'foo')->getMessage()
+            MissingLazyPropertyGetter::fromGetter(new stdClass(), 'getFoo', 'foo')->getMessage(),
         );
     }
 }
