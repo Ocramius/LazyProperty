@@ -42,5 +42,11 @@
             "LazyPropertyTestAsset\\": "tests/LazyPropertyTestAsset",
             "LazyPropertyTest\\": "tests/LazyPropertyTest"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": false
+        }
     }
 }
