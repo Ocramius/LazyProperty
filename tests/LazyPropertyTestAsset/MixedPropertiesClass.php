@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace LazyPropertyTestAsset;
 
+use AllowDynamicProperties;
 use LazyProperty\LazyPropertiesTrait;
 
 /**
  * Mixed properties test asset
  */
+#[AllowDynamicProperties]
 class MixedPropertiesClass
 {
     use LazyPropertiesTrait;

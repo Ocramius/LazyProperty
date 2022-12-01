@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace LazyPropertyTestAsset;
 
+use AllowDynamicProperties;
 use LazyProperty\LazyPropertiesTrait;
 
 /**
  * Test asset with lazy getters
  */
+#[AllowDynamicProperties]
 class LazyGetterClass
 {
     use LazyPropertiesTrait;
