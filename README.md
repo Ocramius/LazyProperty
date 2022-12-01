@@ -58,6 +58,7 @@ its protected `$dependency` property may just use `LazyProperty\LazyPropertiesTr
 
 
 ```php
+#[\AllowDynamicProperties]
 class SomeService
 {
     use \LazyProperty\LazyPropertiesTrait;
