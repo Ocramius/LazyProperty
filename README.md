@@ -2,10 +2,16 @@
 
 This small library aims at providing a very simple and efficient loading of lazy properties
 
-Currently maintained by [Niklas Schöllhorn](https://github.com/nschoellhorn), taken over 3rd March, 2019
-
 [![Latest Stable Version](https://poser.pugx.org/ocramius/lazy-property/v/stable.png)](https://packagist.org/packages/ocramius/lazy-property)
 [![Latest Unstable Version](https://poser.pugx.org/ocramius/lazy-property/v/unstable.png)](https://packagist.org/packages/ocramius/lazy-property)
+
+## Abandoned
+
+Starting with PHP 8.3, dynamic properties are [no longer allowed "out of the box"](https://wiki.php.net/rfc/deprecate_dynamic_properties).
+While it is still possible to have dynamic properties via explicit declaration (the `#[\AllowDynamicProperties]` attribute), the approach
+of this package is no longer to be considered safe nor efficient long-term.
+
+Based on that, this package is deprecated and abandoned: please use traditional PHP `array`s instead.
 
 ## Installation
 
